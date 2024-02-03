@@ -23,7 +23,7 @@ class TableCountCaleg extends Component
     {
         if ($this->categorylokasi === 'kota') {
             $total = Kota::select(DB::raw('SUM(count_calegs.suara) AS suara'))
-            ->leftJoin('kecamatans', 'kotas.id', '=','Kecamatans.kota_id')
+            ->leftJoin('kecamatans', 'kotas.id', '=','kecamatans.kota_id')
             ->leftJoin('desas', 'kecamatans.id','=','desas.kecamatan_id')
             ->leftJoin('tps', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
@@ -49,7 +49,7 @@ class TableCountCaleg extends Component
             $total = Tps::select(DB::raw('SUM(count_calegs.suara) AS suara'))
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
             ->where('tps.id', $this->lokasiid)
-            ->where('count_calegs.caleg_id', '=',$this->caleg_id)->get();
+            ->where('count_calegs.caleg_id', $this->caleg_id)->get();
         }
         return view('livewire.dashboard.table-count-caleg', compact('total'));
     }
