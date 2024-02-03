@@ -3,9 +3,6 @@
         <livewire:dashboard.filter></livewire:dashboard.filter>
 
         <section class="rekapitulasi">
-            {{$this->kat}}
-            {{$this->idcategory}}
-            <button wire:click='tes'>adsa</button>
         
             <livewire:dashboard.diagram></livewire:dashboard.diagram>
             
