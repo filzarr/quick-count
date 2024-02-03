@@ -7,7 +7,7 @@ use DB;
 use App\Models\Caleg;
 use App\Models\Kota;
 use App\Models\Kecamatan;
-use App\Models\desa;
+use App\Models\Desa;
 use App\Models\Tps;
 class TablePartai extends Component
 {
