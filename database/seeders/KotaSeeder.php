@@ -34,7 +34,7 @@ class KotaSeeder extends Seeder
         ]);
         \App\Models\Kota::create([
             'id' => '5',
-            'Kota' => 'Pakpak',
+            'Kota' => 'Pakpak Bharat',
         ]);
         \App\Models\Kota::create([
             'id' => '6',

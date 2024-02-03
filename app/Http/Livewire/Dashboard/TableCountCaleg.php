@@ -28,7 +28,7 @@ class TableCountCaleg extends Component
             ->leftJoin('tps', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
             ->where('kotas.id', $this->lokasiid)
-            ->where('count_calegs.caleg_id',$this->caleg_id)->get();
+            ->where('count_calegs.caleg_id', '=' ,$this->caleg_id)->get();
         }
         elseif ($this->categorylokasi === 'kecamatan') {
             $total = Kecamatan::select(DB::raw('SUM(count_calegs.suara) AS suara'))
@@ -36,20 +36,20 @@ class TableCountCaleg extends Component
             ->leftJoin('tps', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
             ->where('kecamatans.id', $this->lokasiid)
-            ->where('count_calegs.caleg_id',$this->caleg_id)->get();
+            ->where('count_calegs.caleg_id','=' ,$this->caleg_id)->get();
         }
         elseif ($this->categorylokasi === 'desa') {
             $total = Desa::select(DB::raw('SUM(count_calegs.suara) AS suara'))
             ->leftJoin('tps', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
             ->where('desas.id', $this->lokasiid)
-            ->where('count_calegs.caleg_id',$this->caleg_id)->get();
+            ->where('count_calegs.caleg_id','=',$this->caleg_id)->get();
         }
         elseif ($this->categorylokasi === 'tps') {
             $total = Tps::select(DB::raw('SUM(count_calegs.suara) AS suara'))
             ->leftJoin('count_calegs', 'tps.id','=','count_calegs.tps_id')
             ->where('tps.id', $this->lokasiid)
-            ->where('count_calegs.caleg_id',$this->caleg_id)->get();
+            ->where('count_calegs.caleg_id', '=',$this->caleg_id)->get();
         }
         return view('livewire.dashboard.table-count-caleg', compact('total'));
     }
