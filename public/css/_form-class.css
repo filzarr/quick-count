@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+    font-family: "Roboto", sans-serif;
+}
+.btn-form {
+    display: flex;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn-form p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+.btn-form iconify-icon {
+    font-size: 16px;
+    color: #333;
+}
+
+/* page css */
+.main-content-form {
+    padding: 64px 16%;
+}
+.header-content-form {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.content-form {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+}
+
+/* final form css */
+
+.final-form-container {
+    padding: 64px 16%;
+}
+.final-form-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.final-form-header h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    flex: 1 0;
+}
+.final-form-header iconify-icon {
+    font-size: 64px;
+}
+.final-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.btn-final-form {
+    display: flex;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn-final-form p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+.btn-final-form iconify-icon {
+    font-size: 16px;
+    color: #333;
+}
+.input-count-partai {
+    display: flex;
+    padding: 8px 16px;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-count-partai p {
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
+}
+.input-count-partai__input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+.input-count-partai__input iconify-icon {
+    font-size: 28px;
+}
+.input-count-partai__input input {
+    width: 48px;
+    text-align: center;
+    border-width: 0px;
+    border-bottom: 1px solid #333;
+}
+.input-count-partai__input input:focus {
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input{
+    outline: none !important;
+    outline-color: transparent !important;
+}
+input[type="number"] {
+    padding: 0 !important;
+    -moz-appearance: textfield;
+}
+input {
+    font-size: medium;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+}
+.table-content-body__item {
+    color: #3c3c3c;
+    font-size: 14px;
+    font-weight: 600;
+}
+table {
+    border: 1px solid rgba(107, 107, 107, 0.485);
+}
+tr,
+td,
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.table-input {
+    padding: 0px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.table-input iconify-icon {
+    font-size: 28px;
+}
+.table-input input {
+    width: 48px;
+    text-align: center;
+    border-width: 0px;
+    border-bottom: 1px solid #333;
+}
+.table-input input:focus {
+    outline: none;
+}
+.table-foot-item {
+    color: #3c3c3c;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+tfoot > tr > td {
+    border-collapse: collapse;
+    border-top: 1px solid rgba(107, 107, 107, 0.485);
+}
+.btn-submit {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #269ad4;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+@media screen and (max-width:1200px) {
+    .final-form-container{
+        padding: 32px 14%;
+    }
+}
+@media screen and (max-width:980px) {
+    .final-form-container{
+        padding: 24px 12%;
+    }
+}
+@media screen and (max-width:768px) {
+    .final-form-container{
+        padding: 16px 5%;
+    }
+    .table-content-header__item{
+        font-size: 14px;
+    }
+    .table-content-body__item{
+        font-size: 12px;
+    }
+    .table-foot-item{
+        font-size: 14px;
+    }
+    .final-form-header h3 {
+        font-size: 14px;
+    }
+    .final-form-header iconify-icon {
+        font-size: 32px;
+    }
+    .final-form-header{
+        margin-bottom: 32px;
+    }
+    .input-count-partai__input iconify-icon{
+        font-size: 16px;
+    }
+    .table-input iconify-icon{
+        font-size: 16px;
+    }
+    .btn-submit{
+        font-size: 14px;
+    }
+}
+.final-form-header{
+    margin-bottom: 32px;
+}

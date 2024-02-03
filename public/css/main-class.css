@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+    font-family: "Roboto", sans-serif;
+}
+.container{
+    padding: 0px 14%;
+    background-color: #f3f3f3;
+}
+.filter{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 32px;
+    row-gap: 2px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.rekapitulasi{
+    padding-top: 16px;
+}
+.rekapitulasi__header h3{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+.filter{
+    position: sticky;
+    top: 0;
+    background-color: white ;
+}
+.rekapitulasi__calon{
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.125);
+    overflow: hidden;
+}
+.container__wrapper{
+    padding: 16px 2%;
+    background-color: white;
+    border-right: 1px solid rgba(0,0,0,.125);
+    border-left: 1px solid rgba(0,0,0,.125);
+    box-shadow: 0px 0px 20px grey;
+}
