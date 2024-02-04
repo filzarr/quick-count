@@ -35,6 +35,28 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
 }
+@media screen and  (max-width:1200px) {
+    .main-content-form {
+        padding: 48px 14%;
+    }
+    .content-form {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+    }
+}
+@media screen and  (max-width:800px) {
+    .main-content-form {
+        padding: 32px 10%;
+    }
+    .content-form {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 32px;
+    }
+}
 
 /* final form css */
 
