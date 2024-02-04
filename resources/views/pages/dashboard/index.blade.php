@@ -6,7 +6,22 @@
         var ttl = document.querySelectorAll(".total-suara-partai")
         const ctx = document.getElementById('rekapitulasi__chart');
         var datas = [];
+        var totalsuarapartai = document.querySelectorAll('.total-suara-partai');
+        var suarapartai = document.querySelectorAll('.suara-partai');
 
+        for (let i = 0; i < totalsuarapartai.length; i++) {
+            var kelas = ".suara-";
+            var classsuara = kelas.concat(i);
+            var totalsuara = 0;
+            var suaracaleg = document.querySelectorAll(classsuara);
+
+            for (let j = 0; j < suaracaleg.length; j++) {
+                var suaracalegdetail = suaracaleg[j].textContent || suaracaleg[j].innerText;
+                totalsuara += parseInt(suaracalegdetail) || 0; // Pastikan nilai yang di-parse valid
+            }
+            // Tambahkan total suara ke nilai partai
+            totalsuarapartai[i].value = parseInt(suarapartai[i].value) + totalsuara;
+        }
         for (let index = 0; index < ttl.length; index++) {
             var a = ttl[index].value;
             datas[index] = a;
@@ -46,6 +61,41 @@
             },
 
         });
+        window.addEventListener('contentChanged', event => {
+            console.log("aaaa");
+            var newData = [];
+
+            for (let i = 0; i < totalsuarapartai.length; i++) {
+                var kelas = ".suara-";
+                var classsuara = kelas.concat(i);
+                var totalsuara = 0;
+                var suaracaleg = document.querySelectorAll(classsuara);
+
+                for (let j = 0; j < suaracaleg.length; j++) {
+                    var suaracalegdetail = suaracaleg[j].textContent || suaracaleg[j].innerText;
+                    totalsuara += parseInt(suaracalegdetail) || 0; // Pastikan nilai yang di-parse valid
+                }
+
+                // Tambahkan total suara ke nilai partai
+                totalsuarapartai[i].value = parseInt(suarapartai[i].value) + totalsuara;
+
+                // Tambahkan total suara ke array newData untuk Chart.js
+                newData.push(totalsuara);
+            }
+
+            // Pastikan objek Chart.js telah didefinisikan dan dapat diakses
+            if (typeof b !== 'undefined') {
+                // Perbarui data di Chart.js
+                b.data.datasets[0].data = newData;
+                b.update();
+            } else {
+                console.error('Objek Chart.js tidak ditemukan.');
+            }
+        });
+        document.addEventListener('livewire:load', function() {
+
+        })
+
         // setInterval(() => {
 
 

@@ -16,19 +16,12 @@
                         <th scope="col" class="px-6 pt-8 pb-3">
                             Calon Legistlatif
                         </th>
-                        @foreach ($datalokasi as $item)
-                            <th scope="col" class="px-6 pt-8 pb-3">
-                                {{ $item->nama }}
-                            </th>
-                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($caleg as $item)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row"
-                                class="px-6 py-4 font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $item->nama }}</td>
+
                             @foreach ($datalokasi as $itemlokasi)
                                 <livewire:dashboard.table-count-caleg lokasi="{{ $itemlokasi->id }}"
                                     categorylokasi="{{ $this->category_total }}" caleg_id="{{$item->angka}}"></livewire:dashboard.table-count-caleg>

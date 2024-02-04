@@ -9,6 +9,10 @@ class Kota extends Model
 {
     use HasFactory;
     use Sluggable;
+    public function kecamatan(): HasMany
+    {
+        return $this->hasMany(Kecamatan::class);
+    }
     public function sluggable(): array
     {
         return [

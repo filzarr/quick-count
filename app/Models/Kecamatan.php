@@ -9,6 +9,14 @@ class Kecamatan extends Model
 {
     use Sluggable;
     use HasFactory;
+    public function desa(): HasMany
+    {
+        return $this->hasMany(Desa::class);
+    }
+    public function kota(): BelongsTo
+    {
+        return $this->belongsTo(Kota::class);
+    }
     public function sluggable(): array
     {
         return [
