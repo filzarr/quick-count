@@ -25,7 +25,7 @@ class DesaSeeder extends Seeder
             'Suka Ramai'
         ]);
         $this->binjaikota = collect([
-            'Bernganm',
+            'Berngam',
             'Binjai',
             'Kartini',
             'Pekan Binjai',

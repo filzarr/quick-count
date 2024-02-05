@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class LampiranTps extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tps_id',
+        'file'
+    ];
 }

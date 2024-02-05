@@ -47,7 +47,7 @@
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
                             <iconify-icon icon="gala:add"></iconify-icon>
-                            <input type="number" class=" focus:ring-0" value="{{$this->dptb}}" wire:model="dpt"
+                            <input type="number" class=" focus:ring-0" value="{{$this->dptb}}" wire:model="dptb"
                                 class="border-transparent  focus:ring-0">
                             <iconify-icon icon="bi:dash-circle"></iconify-icon>
                         </div>
@@ -102,7 +102,7 @@
                 </tr>
                 <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
                     <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah seluruh suara sah + suara tidak sah : </td>
-                    <td class="table-foot-item" value="{{$this->totalsuarasahtidak}}" wire:model="totalsuarasahtidak" width="100%" colspan="100%" style="text-align: center">12354</td>
+                    <td class="table-foot-item" value="{{$this->totalsuarasahtidak}}" wire:model="totalsuarasahtidak" width="100%" colspan="100%" style="text-align: center">{{$this->totalsuarasahtidak}}</td>
 
                 </tr>
             </tbody>
@@ -180,37 +180,37 @@
             </header>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran1" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 1 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran2" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 2 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran3" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 3 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran4" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 4 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran5" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 5 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran6" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 6 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
             <div class=" grid gap-0">
                 
-                <input class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
+                <input type="file" wire:model="lampiran7" class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file">
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 7 PNG, JPG or Webp (MAX. 5Mb).</p>
             </div>
 

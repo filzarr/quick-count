@@ -11,7 +11,9 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </head>
 <body>
+    <x-navform></x-navform>
     <main>
+        
         @include('sweetalert::alert')
         @yield('content')
     </main>
