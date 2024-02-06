@@ -6,9 +6,10 @@
         var ttl = document.querySelectorAll(".total-suara-partai")
         const ctx = document.getElementById('rekapitulasi__chart');
         var datas = [];
+        var datanamacaleg = [];
         var totalsuarapartai = document.querySelectorAll('.total-suara-partai');
         var suarapartai = document.querySelectorAll('.suara-partai');
-
+        var namacaleg = document.querySelectorAll('.nama-caleg');
         for (let i = 0; i < totalsuarapartai.length; i++) {
             var kelas = ".suara-";
             var classsuara = kelas.concat(i);
@@ -22,20 +23,27 @@
             // Tambahkan total suara ke nilai partai
             totalsuarapartai[i].value = parseInt(suarapartai[i].value) + totalsuara;
         }
-        for (let index = 0; index < ttl.length; index++) {
-            var a = ttl[index].value;
-            datas[index] = a;
-        }
 
+        for (let i = 0; i < namacaleg.length; i++) {
+            var value = namacaleg[i].innerText || namacaleg.textContent;
+            datanamacaleg[i] = value;
+        }
+        for (let i = 0; i < 10; i++) {
+            var classcaleg = '.suara-caleg-';
+            var classall = classcaleg.concat(i);
+            var a = document.querySelectorAll(classall);
+            var total = 0;
+            for (let j = 0; j < a.length; j++) {
+                var value = a[j].textContent || a[j].innerText;
+                total = total + parseInt(value);
+            }
+            datas[i] = total;
+        }
         var b = new Chart(ctx, {
             type: 'bar',
             data: {
 
-                labels: [
-                    @foreach ($data as $item)
-                        "{{ $item->partai }}",
-                    @endforeach
-                ],
+                labels: datanamacaleg,
                 datasets: [{
                     label: "Jumlah Suara ",
                     data: datas,
@@ -62,25 +70,31 @@
 
         });
         window.addEventListener('contentChanged', event => {
-            console.log("aaaa");
+            for (let i = 0; i < totalsuarapartai.length; i++) {
+            var kelas = ".suara-";
+            var classsuara = kelas.concat(i);
+            var totalsuara = 0;
+            var suaracaleg = document.querySelectorAll(classsuara);
+
+            for (let j = 0; j < suaracaleg.length; j++) {
+                var suaracalegdetail = suaracaleg[j].textContent || suaracaleg[j].innerText;
+                totalsuara += parseInt(suaracalegdetail) || 0; // Pastikan nilai yang di-parse valid
+            }
+            // Tambahkan total suara ke nilai partai
+            totalsuarapartai[i].value = parseInt(suarapartai[i].value) + totalsuara;
+        }
             var newData = [];
 
-            for (let i = 0; i < totalsuarapartai.length; i++) {
-                var kelas = ".suara-";
-                var classsuara = kelas.concat(i);
-                var totalsuara = 0;
-                var suaracaleg = document.querySelectorAll(classsuara);
-
-                for (let j = 0; j < suaracaleg.length; j++) {
-                    var suaracalegdetail = suaracaleg[j].textContent || suaracaleg[j].innerText;
-                    totalsuara += parseInt(suaracalegdetail) || 0; // Pastikan nilai yang di-parse valid
+            for (let i = 0; i < 10; i++) {
+                var classcaleg = '.suara-caleg-';
+                var classall = classcaleg.concat(i);
+                var a = document.querySelectorAll(classall);
+                var total = 0;
+                for (let j = 0; j < a.length; j++) {
+                    var value = a[j].textContent || a[j].innerText;
+                    total = total + parseInt(value);
                 }
-
-                // Tambahkan total suara ke nilai partai
-                totalsuarapartai[i].value = parseInt(suarapartai[i].value) + totalsuara;
-
-                // Tambahkan total suara ke array newData untuk Chart.js
-                newData.push(totalsuara);
+                newData[i] = total;
             }
 
             // Pastikan objek Chart.js telah didefinisikan dan dapat diakses

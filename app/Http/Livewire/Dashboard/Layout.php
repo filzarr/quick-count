@@ -11,16 +11,40 @@ use App\Models\CountPartai;
 use App\Models\Desa;
 use App\Models\Tps;
 use App\Models\Kecamatan;
+use App\Models\LampiranTps;
+use App\Models\DataPemilih;
 use DB;
 class Layout extends Component
 {
     public $kat;
     public $data;
+    public $lampiran;
+    public $suarasah;
+    public $suaratidaksah;
+    public $dpt;
+    public $pemilih;
+    public $dptb;
+    public $dpk;
+    public $show = false;
+    public $tps_id;
     public $idcategory;
     protected $listeners = ['changefilters'];
+    public $tps;
     public function changefilters($request){
         $this->idcategory = $request['idcategory'];
         $this->kat = $request['category'];
+    }
+    public function openfile($tps, $tpsnama){
+        $this->tps_id = $tps;
+        $this->show = true;
+        $this->lampiran = LampiranTps::where('tps_id', $this->tps_id)->get();
+        $this->suaratidaksah = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'suara-tidak-sah')->first();
+        $this->suarasah = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'suara-sah')->first();
+        $this->dpk = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dpk')->first();
+        $this->dpt = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dpt')->first();
+        $this->dptb = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dptb')->first();
+        $this->pemilih = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'pemilih')->first();
+        $this->tps = $tpsnama;
     }
     public function render()
     {
@@ -56,14 +80,14 @@ class Layout extends Component
                 }
                 elseif($this->kat == 'desa'){
                     $caleg->lokasi = Tps::
-                    select(DB::raw('tps.nomortps as lokasi, COALESCE(SUM(count_calegs.suara),0) as suara'))
+                    select(DB::raw('tps.nomortps as lokasi, tps.id as tps_id, COALESCE(SUM(count_calegs.suara),0) as suara'))
                     ->leftJoin('count_calegs', function ($join) use ($caleg) {
                         $join->on('tps.id', '=', 'count_calegs.tps_id')
                             ->where('count_calegs.caleg_id', $caleg->id);
                     })->where('tps.desa_id', $this->idcategory)->groupBy('tps.id')->get();
                 }
                 else{
-
+                    
                     $caleg->lokasi = Kota::
                     select(DB::raw('kotas.Kota as lokasi, COALESCE(SUM(count_calegs.suara),0) as suara'))
                     ->leftJoin('kecamatans', 'kotas.id','=','kecamatans.kota_id')

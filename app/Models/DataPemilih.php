@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DataPemilih extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tps_id',
+        'kategori',
+        'suara'
+    ];
 }

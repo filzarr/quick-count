@@ -49,25 +49,7 @@ class KecamatanSeeder extends Seeder
             'Tanjung Pura',
             'Wampu'
         ]);
-        $this->karo = collect([
-            'Barusjahe',
-            'Berastagi',
-            'Dolat Rakyat',
-            'Juhar',
-            'Kabanjahe',
-            'Kutabuluh',
-            'Lau Baleng',
-            'Mardingding',
-            'Merdeka',
-            'Merek',
-            'Munte',
-            'Naman Teran',
-            'Payung',
-            'Simpang Empat',
-            'Tiga Binanga',
-            'Tiganderket',
-            'Tigapanah'
-        ]);
+
     }
 
     public function run(): void
@@ -85,14 +67,6 @@ class KecamatanSeeder extends Seeder
                 'id' => $this->j,
                 'kecamatan' => $this->langkat[$i] ,
                 'kota_id' => '2',
-            ]);
-            $this->j++;
-        }
-        for($i=0; $i < $this->karo->count(); $i++){
-            \App\Models\Kecamatan::create([
-                'id' => $this->j,
-                'kecamatan' => $this->karo[$i] ,
-                'kota_id' => '3',
             ]);
             $this->j++;
         }

@@ -22,39 +22,6 @@ class KotaSeeder extends Seeder
 
             'Kota' => 'Langkat',
         ]);
-        \App\Models\Kota::create([
-            'id' => '3',
 
-            'Kota' => 'Karo',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '4',
-
-            'Kota' => 'Dairi',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '5',
-            'Kota' => 'Pakpak Bharat',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '6',
-            'Kota' => 'Asahan',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '7',
-            'Kota' => 'Batu Bara',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '8',
-            'Kota' => 'Tanjungbalai',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '9',
-            'Kota' => 'Simalungun',
-        ]);
-        \App\Models\Kota::create([
-            'id' => '10',
-            'Kota' => 'Pematangsiantar',
-        ]);
     }
 }

@@ -124,7 +124,7 @@ class FormCaleg extends Component
         ]);
         if ($this->lampiran1) {
             $img =md5($this->lampiran1 . microtime()).'.'.$this->lampiran1->extension();
-            $this->lampiran1->storeAs('lampiran/', $img);
+            $this->lampiran1->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -132,7 +132,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran2) {
             $img =md5($this->lampiran2 . microtime()).'.'.$this->lampiran2->extension();
-            $this->lampiran2->storeAs('lampiran/', $img);
+            $this->lampiran2->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -140,7 +140,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran3) {
             $img =md5($this->lampiran3 . microtime()).'.'.$this->lampiran3->extension();
-            $this->lampiran3->storeAs('lampiran/', $img);
+            $this->lampiran3->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -148,7 +148,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran4) {
             $img =md5($this->lampiran4 . microtime()).'.'.$this->lampiran4->extension();
-            $this->lampiran4->storeAs('lampiran/', $img);
+            $this->lampiran4->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -156,7 +156,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran5) {
             $img =md5($this->lampiran5 . microtime()).'.'.$this->lampiran5->extension();
-            $this->lampiran5->storeAs('lampiran/', $img);
+            $this->lampiran5->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -164,7 +164,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran6) {
             $img =md5($this->lampiran6 . microtime()).'.'.$this->lampiran6->extension();
-            $this->lampiran6->storeAs('lampiran/', $img);
+            $this->lampiran6->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,
@@ -172,7 +172,7 @@ class FormCaleg extends Component
         }
         if ($this->lampiran7) {
             $img =md5($this->lampiran7 . microtime()).'.'.$this->lampiran7->extension();
-            $this->lampiran7->storeAs('lampiran/', $img);
+            $this->lampiran7->storeAs('lampiran/', $img,'public');
             LampiranTps::create([
                 'tps_id' => $this->tps,
                 'file' => $img,

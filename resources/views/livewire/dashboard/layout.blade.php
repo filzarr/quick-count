@@ -4,6 +4,7 @@
 
         <section class="rekapitulasi">
 
+
             <livewire:dashboard.diagram></livewire:dashboard.diagram>
 
             <header class="rekapitulasi__header mt-5">
@@ -47,12 +48,9 @@
                                         <br>
                                         Suara&nbsp;:&nbsp;<input
                                             style="background-color: transparent;font-size:12px;padding:0;border:0;"
-                                            class="total-suara-partai"   type="text" disabled
-                                            ></input>
-                                            <input
-                                            style=""
-                                            class="hidden suara-partai" onchange="myFunction()" type="integer" 
-                                            value="{{ $partai->suarapartai }}"></input>
+                                            class="total-suara-partai" type="text" disabled></input>
+                                        <input style="" class="hidden suara-partai" onchange="myFunction()"
+                                            type="integer" value="{{ $partai->suarapartai }}"></input>
                                     </th>
                                 </tr>
                             </thead>
@@ -65,35 +63,172 @@
                                             Calon Legistlatif
                                         </th>
                                         @foreach ($partai->calegs[0]->lokasi as $lokasi)
-                                            <th class="px-6 pt-8 pb-3">
+                                            <th class="px-6 pt-8 pb-3"
+                                                wire:click="openfile({{ $lokasi->tps_id }}, '{{ $lokasi->lokasi }}')">
                                                 {{ $lokasi->lokasi }}
                                             </th>
                                         @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    $j = 0;
+                                    ?>
                                     @foreach ($partai->calegs as $caleg)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             <td scope="row"
-                                                class="px-6 py-4 font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                                class="px-6 py-4 font-normal nama-caleg text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $caleg->namacaleg }}</td>
                                             @foreach ($caleg->lokasi as $lokasi)
-                                                <td scope="col"  style="text-align: center;" class="px-6 py-3 suara-{{$i}}">
-                                                    {{ $lokasi->suara }}
-                                                </td>
+                                                @if ($this->kat == 'desa')
+                                                    <td scope="col" style="text-align: center;"
+                                                        class="suara-caleg-{{ $j }} px-6 py-3 suara-{{ $i }}">
+                                                        {{ $lokasi->suara }}
+                                                    </td>
+                                                @else
+                                                    <td scope="col" style="text-align: center;"
+                                                        class="suara-caleg-{{ $j }} px-6 py-3 suara-{{ $i }}">
+                                                        {{ $lokasi->suara }}
+                                                    </td>
+                                                @endif
                                             @endforeach
                                         </tr>
+                                        <?php
+                                        $j++;
+                                        ?>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </section>
                     <?php
-                        $i++;
+                    $i++;
                     ?>
                 @endforeach
             </div>
+            @if ($this->show)
+                <header class="rekapitulasi__header mt-5">
+                    <h3>{{ $this->tps }}</h3>
+                </header>
+                <table class="table-content mt-5">
+
+                    <tbody class="table-content-body">
+
+
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3 border-t-2 border-collapse text-md" colspan="100%"
+                                style="text-align: left">A. Data Pemilih
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3  border-b-2" colspan="5" width="80%"
+                                style="text-align: left">Jumlah pemilih dalam Daftar Pemilih Tetap (DPT) :
+                            </td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number"value="{{ $this->pemilih->suara }}" class=" focus:ring-0"
+                                        class="border-transparent  focus:ring-0" disabled>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
+                                colspan="100%" style="text-align: left">B. Pengguna Hak Pilih
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tetap (DPT) :
+                            </td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number" class=" focus:ring-0"value="{{ $this->dpt->suara }}"
+                                        class="border-transparent  focus:ring-0" disabled>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan (DPTb)
+                                : </td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number" class=" focus:ring-0" disabled
+                                        value="{{ $this->dptb->suara }}" class="border-transparent  focus:ring-0">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Khusus (DPK) :
+                            </td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number"value="0" class=" focus:ring-0" disabled
+                                        value="{{ $this->dpk->suara }}" class="border-transparent  focus:ring-0">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
+                            <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah pengguna hak pilih
+                                (DPT + DPTb + DPK)</td>
+                            <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
+                                {{ $this->dpk->suara + $this->dptb->suara + $this->dpt->suara }}</td>
+
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
+                                colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3 " colspan="5" width="80%"
+                                style="text-align: left">
+                                Jumlah Suara Sah :</td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number" disabled value="{{ $this->suarasah->suara }}"
+                                        class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row">
+                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                                style="text-align: left">
+                                Jumlah Suara Tidak Sah :</td>
+                            <td class="table-content-body__item" colspan="1">
+                                <div class="table-input">
+                                    <input type="number" disabled value="{{ $this->suaratidaksah->suara }}"
+                                        class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
+                            <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah seluruh suara sah
+                                + suara tidak sah : </td>
+                            <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
+                                {{ $this->suaratidaksah->suara + $this->suarasah->suara }}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+                <header class="rekapitulasi__header mt-5">
+                    <h3>{{ $this->tps }}</h3>
+                </header>
+                <div class="grid grid-cols-4 gap-10 mt-5">
+                    @foreach ($this->lampiran as $item)
+                        <a href="{{url('/storage/lampiran/'.$item->file)}}" target="_blank"><img src="{{url('/storage/lampiran/'.$item->file)}}" alt=""></a>
+                    @endforeach
+                </div>
+            @else
+            @endif
 
         </section>
     </section>
 </section>
+<style>
+    .table-input input {
+        border-bottom: 0;
+    }
+</style>

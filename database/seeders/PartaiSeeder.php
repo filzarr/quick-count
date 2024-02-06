@@ -14,24 +14,8 @@ class PartaiSeeder extends Seeder
     private $partai;
     public function __construct(){
         $this->partai = collect([
-            'PKB',
-            'Gerindra',
-            'PDI-P',
-            'Golkar',
-            'Nasdem',
-            'Buruh',
-            'Gelora',
-            'PKS',
-            'PKN',
-            'Hanura',
-            'Garuda',
-            'PAN',
-            'PBB',
-            'Demokrat',
-            'PSI',
-            'Perindo',
-            'PPP',
-            'Ummat'
+ 
+            'Golkar'
         ]);
     }
     public function run(): void
