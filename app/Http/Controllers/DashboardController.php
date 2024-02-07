@@ -8,8 +8,7 @@ use DB;
 class DashboardController extends Controller
 {
     public function index(){
-        $data = DB::table('total_count_partai_view')
-        ->get();
-        return view('pages.dashboard.index', compact('data'));
+
+        return view('pages.dashboard.index');
     }
 }
