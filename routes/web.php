@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\DashboardController;
 /*
@@ -14,7 +15,9 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::post('/login', [AuthController::class, 'loginattemp']);
 Route::get('/form', [FormController::class, 'kota']);
 Route::get('/form/{kota}', [FormController::class, 'kecamatan']);
 Route::get('/form/{kota}/{kecamatan}', [FormController::class, 'desa']);
