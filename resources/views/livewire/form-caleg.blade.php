@@ -225,7 +225,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" class="table-foot-item">Total Suara</td>
+                    <td colspan="2" class="table-foot-item">Total Suara (suara partai + suara caleg)</td>
                     <td class="table-foot-item">{{ $countall }}</td>
                 </tr>
             </tfoot>
