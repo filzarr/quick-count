@@ -273,7 +273,9 @@
                 <input type="file" wire:model="lampiran1"
                     class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="small_size" type="file">
-
+                @error('lampiran1')
+                    <span class=" text-sm  text-red-500">*{{ $message }}</span>
+                @enderror
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 1 PNG, JPG or Webp
                     (MAX. 5Mb).</p>
             </div>

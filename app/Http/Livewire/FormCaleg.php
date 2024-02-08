@@ -38,7 +38,49 @@ class FormCaleg extends Component
     public $totalsuarasahtidak;
     public $pemilih = 0;
 
-
+    protected $rules = [
+        'lampiran1' => 'required|max:5000000',
+        'partai' => 'required|integer',
+        'countpartai' => 'required|integer|min:0',
+        'calegs.*' => 'required|integer|min:0',
+        'dpt' => 'required|integer|min:0',
+        'dptb' => 'required|integer|min:0',
+        'dpk' => 'required|integer|min:0',
+        'pemilih' => 'required|integer|min:0',
+        'suarasah' => 'required|integer|min:0',
+        'suaratidaksah' => 'required|integer|min:0',
+        // Tambahkan aturan validasi lainnya sesuai kebutuhan
+    ];
+    protected $messages = [
+        'lampiran1.required' => 'Lampiran 1 harus diisi.',
+        'partai.required' => 'Partai harus dipilih.',
+        'partai.integer' => 'Partai harus berupa angka.',
+        'countpartai.required' => 'Jumlah suara partai harus diisi.',
+        'countpartai.integer' => 'Jumlah suara partai harus berupa angka.',
+        'countpartai.min' => 'Jumlah suara partai tidak boleh kurang dari :min.',
+        'calegs.*.required' => 'Jumlah suara caleg harus diisi.',
+        'calegs.*.integer' => 'Jumlah suara caleg harus berupa angka.',
+        'calegs.*.min' => 'Jumlah suara caleg tidak boleh kurang dari :min.',
+        'dpt.required' => 'Jumlah pengguna hak pilih DPT harus diisi.',
+        'dpt.integer' => 'Jumlah pengguna hak pilih DPT harus berupa angka.',
+        'dpt.min' => 'Jumlah pengguna hak pilih DPT tidak boleh kurang dari :min.',
+        'dptb.required' => 'Jumlah pengguna hak pilih DPTb harus diisi.',
+        'dptb.integer' => 'Jumlah pengguna hak pilih DPTb harus berupa angka.',
+        'dptb.min' => 'Jumlah pengguna hak pilih DPTb tidak boleh kurang dari :min.',
+        'dpk.required' => 'Jumlah pengguna hak pilih DPK harus diisi.',
+        'dpk.integer' => 'Jumlah pengguna hak pilih DPK harus berupa angka.',
+        'dpk.min' => 'Jumlah pengguna hak pilih DPK tidak boleh kurang dari :min.',
+        'pemilih.required' => 'Jumlah pemilih harus diisi.',
+        'pemilih.integer' => 'Jumlah pemilih harus berupa angka.',
+        'pemilih.min' => 'Jumlah pemilih tidak boleh kurang dari :min.',
+        'suarasah.required' => 'Jumlah suara sah harus diisi.',
+        'suarasah.integer' => 'Jumlah suara sah harus berupa angka.',
+        'suarasah.min' => 'Jumlah suara sah tidak boleh kurang dari :min.',
+        'suaratidaksah.required' => 'Jumlah suara tidak sah harus diisi.',
+        'suaratidaksah.integer' => 'Jumlah suara tidak sah harus berupa angka.',
+        'suaratidaksah.min' => 'Jumlah suara tidak sah tidak boleh kurang dari :min.',
+        // Tambahkan pesan kesalahan khusus untuk aturan validasi lainnya sesuai kebutuhan
+    ];
     public function mount($tps){
         $this->tps = $tps;
     }
@@ -78,6 +120,7 @@ class FormCaleg extends Component
         }
     }
     public function submit(){
+        $this->validate(); 
         DataPemilih::create([
             'tps_id' => $this->tps,
             'kategori' => 'dpt',
