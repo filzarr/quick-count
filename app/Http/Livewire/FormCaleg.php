@@ -78,7 +78,6 @@ class FormCaleg extends Component
         }
     }
     public function submit(){
-        $this->validate(); 
         DataPemilih::create([
             'tps_id' => $this->tps,
             'kategori' => 'dpt',
