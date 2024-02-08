@@ -16,14 +16,14 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('pemilih', {{ $this->pemilih + 1 }} )">
+                            <button type="button" wire:click="$set('pemilih', {{ (int)$this->pemilih + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number"value="{{ $this->pemilih }}" class=" focus:ring-0" wire:model="pemilih"
                                 class="border-transparent  focus:ring-0">
 
                             <button type="button"
-                                wire:click="$set('pemilih', {{ $this->pemilih > 0 ? $this->pemilih - 1 : 0 }} )">
+                                wire:click="$set('pemilih', {{ $this->pemilih > 0 ? (int)$this->pemilih - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -42,13 +42,13 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dpt', {{ $this->dpt + 1 }} )">
+                            <button type="button" wire:click="$set('dpt', {{ (int)$this->dpt + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" class=" focus:ring-0" value="{{ $this->dpt }}" wire:model="dpt"
                                 class="border-transparent  focus:ring-0">
 
-                            <button type="button" wire:click="$set('dpt', {{ $this->dpt > 0 ? $this->dpt - 1 : 0 }} )">
+                            <button type="button" wire:click="$set('dpt', {{ $this->dpt > 0 ? (int)$this->dpt - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -60,14 +60,14 @@
                         style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan (DPTb) : </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dptb', {{ $this->dptb + 1 }} )">
+                            <button type="button" wire:click="$set('dptb', {{ (int)$this->dptb + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" class=" focus:ring-0" value="{{ $this->dptb }}" wire:model="dptb"
                                 class="border-transparent  focus:ring-0">
 
                             <button type="button"
-                                wire:click="$set('dptb', {{ $this->dptb > 0 ? $this->dptb - 1 : 0 }} )">
+                                wire:click="$set('dptb', {{ $this->dptb > 0 ? (int)$this->dptb - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -81,13 +81,13 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dpk', {{ $this->dpk + 1 }} )">
+                            <button type="button" wire:click="$set('dpk', {{ (int)$this->dpk + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number"value="0" class=" focus:ring-0" value="{{ $this->dpk }}"
                                 wire:model="dpk" class="border-transparent  focus:ring-0">
 
-                            <button type="button" wire:click="$set('dpk', {{ $this->dpk > 0 ? $this->dpk - 1 : 0 }} )">
+                            <button type="button" wire:click="$set('dpk', {{ $this->dpk > 0 ? (int)$this->dpk - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -113,14 +113,14 @@
                         Jumlah Suara Sah :</td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('suarasah', {{ $this->suarasah + 1 }} )">
+                            <button type="button" wire:click="$set('suarasah', {{ (int)$this->suarasah + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" value="{{ $this->suarasah }}" wire:model="suarasah"
                                 class=" focus:ring-0" class="border-transparent  focus:ring-0">
 
                             <button type="button"
-                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? $this->suarasah - 1 : 0 }} )">
+                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? (int)$this->suarasah - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -134,14 +134,14 @@
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
                             <button type="button"
-                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah + 1 }} )">
+                                wire:click="$set('suaratidaksah', {{ (int)$this->suaratidaksah + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" value="{{ $this->suaratidaksah }}" wire:model="suaratidaksah"
                                 class=" focus:ring-0" class="border-transparent  focus:ring-0">
 
                             <button type="button"
-                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? $this->suaratidaksah - 1 : 0 }} )">
+                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? (int)$this->suaratidaksah - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -203,13 +203,13 @@
                         <td class="table-content-body__item">
                             <div class="table-input">
                                 <button type="button"
-                                    wire:click="$set('calegs.{{ $i }}', {{ $calegs[$i] + 1 }} )">
+                                    wire:click="$set('calegs.{{ $i }}', {{ (int)$calegs[$i] + 1 }} )">
                                     <iconify-icon icon="gala:add"></iconify-icon>
                                 </button>
                                 <input type="number" wire:model="calegs.{{ $i }}" value="0"
                                     class=" focus:ring-0" class="border-transparent  focus:ring-0">
                                 <button type="button"
-                                    wire:click="$set('calegs.{{ $i }}', {{ $calegs[$i] > 0 ? $calegs[$i] - 1 : 0 }} )">
+                                    wire:click="$set('calegs.{{ $i }}', {{ $calegs[$i] > 0 ? (int)$calegs[$i] - 1 : 0 }} )">
                                     <iconify-icon icon="bi:dash-circle"></iconify-icon>
                                 </button>
                             </div>
