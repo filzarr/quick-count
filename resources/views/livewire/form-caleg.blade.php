@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit" class="final-form-content" enctype="multipart/form-data">
+    <form wire:submit.prevent="submit" class="final-form-content" >
         <table class="table-content">
 
             <tbody class="table-content-body">
@@ -279,7 +279,7 @@
             </div>
 
 
-            <div class=""><button class="btn-submit" type="submit">Submit</button></div>
+            <div class=""><button class="btn-submit">Submit</button></div>
     </form>
 
 </div>
