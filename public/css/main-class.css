@@ -51,7 +51,7 @@ body {
         overflow-x: scroll;
     }
     #rekapitulasi__chart {
-        height: 200px;
+        height: 450px !important;
     }
     .rekapitulasi__header h3{
         font-size: 12px;    

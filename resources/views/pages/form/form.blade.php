@@ -1,11 +1,11 @@
 @extends('layout.form')
 @section('content')
     <section class="final-form-container">
-        <div class="flex justify-between items-center">
+        <div class="flex  items-center w-full">
             <a href="/form/{{ $request->kota }}/{{ $request->kecamatan }}">
                 <iconify-icon icon="iconoir:arrow-left-circle" class="text-4xl"></iconify-icon>
             </a>
-            <div class="">
+            <div class="  flex-1">
                 <h3 class="header-content-form">Kabupaten/Kota {{ $kota->Kota }}</h3>
                 <h3 class="header-content-form">Kecamatan {{ $kecamatan->kecamatan }}</h3>
                 <h3 class="header-content-form">Desa/Kelurahan {{ $data->desa }}</h3>

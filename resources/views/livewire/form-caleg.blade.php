@@ -16,14 +16,17 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('pemilih', {{ (int)$this->pemilih + 1 }} )">
+                            <button type="button" wire:click="$set('pemilih', {{ (int) $this->pemilih + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number"value="{{ $this->pemilih }}" class=" focus:ring-0" wire:model="pemilih"
                                 class="border-transparent  focus:ring-0">
+                            @error('pemilih')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
 
                             <button type="button"
-                                wire:click="$set('pemilih', {{ $this->pemilih > 0 ? (int)$this->pemilih - 1 : 0 }} )">
+                                wire:click="$set('pemilih', {{ $this->pemilih > 0 ? (int) $this->pemilih - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -42,13 +45,17 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dpt', {{ (int)$this->dpt + 1 }} )">
+                            <button type="button" wire:click="$set('dpt', {{ (int) $this->dpt + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" class=" focus:ring-0" value="{{ $this->dpt }}" wire:model="dpt"
                                 class="border-transparent  focus:ring-0">
+                            @error('dpt')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
 
-                            <button type="button" wire:click="$set('dpt', {{ $this->dpt > 0 ? (int)$this->dpt - 1 : 0 }} )">
+                            <button type="button"
+                                wire:click="$set('dpt', {{ $this->dpt > 0 ? (int) $this->dpt - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -60,14 +67,16 @@
                         style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan (DPTb) : </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dptb', {{ (int)$this->dptb + 1 }} )">
+                            <button type="button" wire:click="$set('dptb', {{ (int) $this->dptb + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" class=" focus:ring-0" value="{{ $this->dptb }}" wire:model="dptb"
                                 class="border-transparent  focus:ring-0">
-
+                            @error('dptb')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
                             <button type="button"
-                                wire:click="$set('dptb', {{ $this->dptb > 0 ? (int)$this->dptb - 1 : 0 }} )">
+                                wire:click="$set('dptb', {{ $this->dptb > 0 ? (int) $this->dptb - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -81,13 +90,16 @@
                     </td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('dpk', {{ (int)$this->dpk + 1 }} )">
+                            <button type="button" wire:click="$set('dpk', {{ (int) $this->dpk + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number"value="0" class=" focus:ring-0" value="{{ $this->dpk }}"
                                 wire:model="dpk" class="border-transparent  focus:ring-0">
-
-                            <button type="button" wire:click="$set('dpk', {{ $this->dpk > 0 ? (int)$this->dpk - 1 : 0 }} )">
+                            @error('dpk')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                            <button type="button"
+                                wire:click="$set('dpk', {{ $this->dpk > 0 ? (int) $this->dpk - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -96,14 +108,14 @@
                     </td>
                 </tr>
                 <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                    <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah pengguna hak pilih (DPT +
+                    <td width="100%" class="table-foot-item text-[10px] lg:text-base">Jumlah pengguna hak pilih (DPT +
                         DPTb + DPK)</td>
                     <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
                         {{ $this->totalpenggunahakpilih }}</td>
 
                 </tr>
                 <tr class="table-content-body-row">
-                    <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
+                    <td class="table-content-body__item  pl-3 border-b-2 border-t-2 border-collapse text-md"
                         colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
                     </td>
                 </tr>
@@ -113,14 +125,16 @@
                         Jumlah Suara Sah :</td>
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
-                            <button type="button" wire:click="$set('suarasah', {{ (int)$this->suarasah + 1 }} )">
+                            <button type="button" wire:click="$set('suarasah', {{ (int) $this->suarasah + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" value="{{ $this->suarasah }}" wire:model="suarasah"
                                 class=" focus:ring-0" class="border-transparent  focus:ring-0">
-
+                            @error('suarasah')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
                             <button type="button"
-                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? (int)$this->suarasah - 1 : 0 }} )">
+                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? (int) $this->suarasah - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -134,14 +148,16 @@
                     <td class="table-content-body__item" colspan="1">
                         <div class="table-input">
                             <button type="button"
-                                wire:click="$set('suaratidaksah', {{ (int)$this->suaratidaksah + 1 }} )">
+                                wire:click="$set('suaratidaksah', {{ (int) $this->suaratidaksah + 1 }} )">
                                 <iconify-icon icon="gala:add"></iconify-icon>
                             </button>
                             <input type="number" value="{{ $this->suaratidaksah }}" wire:model="suaratidaksah"
                                 class=" focus:ring-0" class="border-transparent  focus:ring-0">
-
+                            @error('suaratidaksah')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
                             <button type="button"
-                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? (int)$this->suaratidaksah - 1 : 0 }} )">
+                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? (int) $this->suaratidaksah - 1 : 0 }} )">
                                 <iconify-icon icon="bi:dash-circle"></iconify-icon>
                             </button>
 
@@ -149,7 +165,8 @@
                     </td>
                 </tr>
                 <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                    <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah seluruh suara sah + suara
+                    <td width="100%" class="table-foot-item text-[10px] lg:text-base ">Jumlah seluruh suara sah +
+                        suara
                         tidak sah : </td>
                     <td class="table-foot-item" value="{{ $this->totalsuarasahtidak }}"
                         wire:model="totalsuarasahtidak" width="100%" colspan="100%" style="text-align: center">
@@ -173,6 +190,9 @@
                     <iconify-icon icon="gala:add"></iconify-icon>
                 </button>
                 <input type="number" value="{{ $countpartai }}" wire:model="countpartai" class="  focus:ring-0">
+                @error('countpartai')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
                 @if ($this->countpartai > 0)
                     <button type="button" wire:click="decreasepartai">
                         <iconify-icon icon="bi:dash-circle"></iconify-icon>
@@ -203,13 +223,17 @@
                         <td class="table-content-body__item">
                             <div class="table-input">
                                 <button type="button"
-                                    wire:click="$set('calegs.{{ $i }}', {{ (int)$calegs[$i] + 1 }} )">
+                                    wire:click="$set('calegs.{{ $i }}', {{ (int) $calegs[$i] + 1 }} )">
                                     <iconify-icon icon="gala:add"></iconify-icon>
                                 </button>
                                 <input type="number" wire:model="calegs.{{ $i }}" value="0"
                                     class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                                @error('calegs.' . $i)
+                                    <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+
                                 <button type="button"
-                                    wire:click="$set('calegs.{{ $i }}', {{ $calegs[$i] > 0 ? (int)$calegs[$i] - 1 : 0 }} )">
+                                    wire:click="$set('calegs.{{ $i }}', {{ $calegs[$i] > 0 ? (int) $calegs[$i] - 1 : 0 }} )">
                                     <iconify-icon icon="bi:dash-circle"></iconify-icon>
                                 </button>
                             </div>
@@ -225,7 +249,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" class="table-foot-item">Total Suara (suara partai + suara caleg)</td>
+                    <td colspan="2" class="table-foot-item text-[10px] lg:text-base">Total Suara (suara partai +
+                        suara caleg)</td>
                     <td class="table-foot-item">{{ $countall }}</td>
                 </tr>
             </tfoot>
@@ -240,6 +265,9 @@
                 <input type="file" wire:model="lampiran1"
                     class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="small_size" type="file">
+                @error('lampiran1')
+                    <span class=" text-sm  text-red-500">*{{ $message }}</span>
+                @enderror
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 1 PNG, JPG or Webp
                     (MAX. 5Mb).</p>
             </div>
