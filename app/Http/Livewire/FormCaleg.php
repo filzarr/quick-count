@@ -37,7 +37,7 @@ class FormCaleg extends Component
     public $suaratidaksah = 0;
     public $totalsuarasahtidak;
     public $pemilih = 0;
-
+    public $isLoading = false;
     protected $rules = [
         'lampiran1' => 'required|max:5000000',
         'partai' => 'required|integer',
@@ -121,6 +121,7 @@ class FormCaleg extends Component
     }
     public function submit(){
         $this->validate(); 
+        $this->isLoading = true;
         DataPemilih::create([
             'tps_id' => $this->tps,
             'kategori' => 'dpt',
@@ -171,9 +172,10 @@ class FormCaleg extends Component
                 'file' => $img,
             ]);
         }
-
+        $this->isLoading = false;
         Alert::success('Berhasil Mengisi Data', 'Terima Kasih Telah Melakukan Pengisian Data Suara');
         return redirect('/form');
+       
     }
 
 
