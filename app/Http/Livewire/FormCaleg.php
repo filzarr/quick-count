@@ -24,7 +24,7 @@ class FormCaleg extends Component
     public $lampiran7;
     public $partai = 1;
     public $countpartai = 0;
-    public $calegs;
+    public $calegs = [0,0,0,0,0,0,0,0,0,0];
     public $tps;
     public $countcaleg = 0;
     public $countall = 0 ;
@@ -130,54 +130,7 @@ class FormCaleg extends Component
                 'file' => $img,
             ]);
         }
-        if ($this->lampiran2) {
-            $img =md5($this->lampiran2 . microtime()).'.'.$this->lampiran2->extension();
-            $this->lampiran2->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
-        if ($this->lampiran3) {
-            $img =md5($this->lampiran3 . microtime()).'.'.$this->lampiran3->extension();
-            $this->lampiran3->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
-        if ($this->lampiran4) {
-            $img =md5($this->lampiran4 . microtime()).'.'.$this->lampiran4->extension();
-            $this->lampiran4->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
-        if ($this->lampiran5) {
-            $img =md5($this->lampiran5 . microtime()).'.'.$this->lampiran5->extension();
-            $this->lampiran5->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
-        if ($this->lampiran6) {
-            $img =md5($this->lampiran6 . microtime()).'.'.$this->lampiran6->extension();
-            $this->lampiran6->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
-        if ($this->lampiran7) {
-            $img =md5($this->lampiran7 . microtime()).'.'.$this->lampiran7->extension();
-            $this->lampiran7->storeAs('lampiran/', $img,'public');
-            LampiranTps::create([
-                'tps_id' => $this->tps,
-                'file' => $img,
-            ]);
-        }
+
         Alert::success('Berhasil Mengisi Data', 'Terima Kasih Telah Melakukan Pengisian Data Suara');
         return redirect('/form');
     }

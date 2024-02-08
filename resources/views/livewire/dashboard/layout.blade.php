@@ -38,12 +38,12 @@
                 $i = 0;
                 ?>
                 @foreach ($this->data as $partai)
-                    <section class="rekapitulasi__calon mt-20">
+                    <section class="rekapitulasi__calon mt-5 lg:mt-20">
                         <table class="  w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" colspan="100%" id="" rowspan="2" class="px-6 py-3">
+                                    <th scope="col" colspan="100%" id="" rowspan="2" class="  px-6 py-3">
                                         Partai&nbsp;:&nbsp;{{ $partai->partai }}
                                         <br>
                                         Suara&nbsp;:&nbsp;<input
@@ -55,15 +55,15 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div class="relative table-count overflow-x-auto ">
+                        <div class="relative table-count overflow-x-scroll ">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs  text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
-                                        <th scope="col" class="px-6 pt-8 pb-3">
+                                        <th scope="col" class="px-6 pt-8 pb-3 text-xs lg:text-sm">
                                             Calon Legistlatif
                                         </th>
                                         @foreach ($partai->calegs[0]->lokasi as $lokasi)
-                                            <th class="px-6 pt-8 pb-3"
+                                            <th class="px-6 pt-8 pb-3 text-xs lg:text-sm"
                                                 wire:click="openfile({{ $lokasi->tps_id }}, '{{ $lokasi->lokasi }}')">
                                                 {{ $lokasi->lokasi }}
                                             </th>
@@ -86,8 +86,8 @@
                                                         {{ $lokasi->suara }}
                                                     </td>
                                                 @else
-                                                    <td scope="col" style="text-align: center;"
-                                                        class="suara-caleg-{{ $j }} px-6 py-3 suara-{{ $i }}">
+                                                    <td scope="col" style="text-align: start;"
+                                                        class="suara-caleg-{{ $j }} text-start px-6 py-3 suara-{{ $i }}">
                                                         {{ $lokasi->suara }}
                                                     </td>
                                                 @endif
@@ -121,7 +121,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  border-b-2" colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3 font-normal  border-b-2" colspan="5" width="80%"
                                 style="text-align: left">Jumlah pemilih dalam Daftar Pemilih Tetap (DPT) :
                             </td>
                             <td class="table-content-body__item" colspan="1">
@@ -137,7 +137,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
                                 style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tetap (DPT) :
                             </td>
                             <td class="table-content-body__item" colspan="1">
@@ -148,7 +148,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
                                 style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan (DPTb)
                                 : </td>
                             <td class="table-content-body__item" colspan="1">
@@ -159,7 +159,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
                                 style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Khusus (DPK) :
                             </td>
                             <td class="table-content-body__item" colspan="1">
@@ -182,7 +182,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 " colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3 font-normal" colspan="5" width="80%"
                                 style="text-align: left">
                                 Jumlah Suara Sah :</td>
                             <td class="table-content-body__item" colspan="1">
@@ -193,7 +193,7 @@
                             </td>
                         </tr>
                         <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  " colspan="5" width="80%"
+                            <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
                                 style="text-align: left">
                                 Jumlah Suara Tidak Sah :</td>
                             <td class="table-content-body__item" colspan="1">
@@ -216,7 +216,7 @@
                 <header class="rekapitulasi__header mt-5">
                     <h3>{{ $this->tps }}</h3>
                 </header>
-                <div class="grid grid-cols-4 gap-10 mt-5">
+                <div class="grid grid-cols-1 gap-10 mt-5">
                     @foreach ($this->lampiran as $item)
                         <a href="{{url('/storage/lampiran/'.$item->file)}}" target="_blank"><img src="{{url('/storage/lampiran/'.$item->file)}}" alt=""></a>
                     @endforeach

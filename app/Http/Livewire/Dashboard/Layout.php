@@ -111,7 +111,25 @@ class Layout extends Component
                     ->where('kecamatans.kota_id', $this->idcategory)
                     ->first();
                     $partai->suarapartai = $a->suarapartai;
-                }else{
+                }
+                elseif($this->kat == 'kecamatan'){
+                    $a = CountPartai::select(DB::raw('COALESCE(SUM(count_partais.suara),0) as suarapartai'))
+                    ->leftJoin('tps', 'count_partais.tps_id', '=', 'tps.id')
+                    ->leftJoin('desas', 'tps.desa_id', '=', 'desas.id')
+                    ->where('partai_id', $partai->id)
+                    ->where('desas.kecamatan_id', $this->idcategory)
+                    ->first();
+                    $partai->suarapartai = $a->suarapartai;
+                }
+                elseif($this->kat == 'desa'){
+                    $a = CountPartai::select(DB::raw('COALESCE(SUM(count_partais.suara),0) as suarapartai'))
+                    ->leftJoin('tps', 'count_partais.tps_id', '=', 'tps.id')
+                    ->where('partai_id', $partai->id)
+                    ->where('tps.desa_id', $this->idcategory)
+                    ->first();
+                    $partai->suarapartai = $a->suarapartai;
+                }
+                else{
                     $a = CountPartai::select(DB::raw('COALESCE(SUM(count_partais.suara),0) as suarapartai'))
                     ->where('partai_id', $partai->id)
                     ->first();
