@@ -39,7 +39,7 @@ class FormCaleg extends Component
     public $pemilih = 0;
 
     protected $rules = [
-        'lampiran1' => 'required|max:5000',
+        'lampiran1' => 'required|max:50000',
         'partai' => 'required|integer',
         'countpartai' => 'required|integer|min:0',
         'calegs.*' => 'required|integer|min:0',

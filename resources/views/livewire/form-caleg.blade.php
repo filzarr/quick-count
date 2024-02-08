@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit" class="final-form-content">
+    <form wire:submit.prevent="submit" class="final-form-content" enctype="multipart/form-data">
         <table class="table-content">
 
             <tbody class="table-content-body">
@@ -114,65 +114,7 @@
                         {{ $this->totalpenggunahakpilih }}</td>
 
                 </tr>
-                <tr class="table-content-body-row">
-                    <td class="table-content-body__item  pl-3 border-b-2 border-t-2 border-collapse text-md"
-                        colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
-                    </td>
-                </tr>
-                <tr class="table-content-body-row">
-                    <td class="table-content-body__item pl-3 font-normal" colspan="5" width="80%"
-                        style="text-align: left">
-                        Jumlah Suara Sah :</td>
-                    <td class="table-content-body__item" colspan="1">
-                        <div class="table-input">
-                            <button type="button" wire:click="$set('suarasah', {{ (int) $this->suarasah + 1 }} )">
-                                <iconify-icon icon="gala:add"></iconify-icon>
-                            </button>
-                            <input type="number" value="{{ $this->suarasah }}" wire:model="suarasah"
-                                class=" focus:ring-0" class="border-transparent  focus:ring-0">
-                            @error('suarasah')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                            <button type="button"
-                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? (int) $this->suarasah - 1 : 0 }} )">
-                                <iconify-icon icon="bi:dash-circle"></iconify-icon>
-                            </button>
 
-                        </div>
-                    </td>
-                </tr>
-                <tr class="table-content-body-row">
-                    <td class="table-content-body__item pl-3 font-normal " colspan="5" width="80%"
-                        style="text-align: left">
-                        Jumlah Suara Tidak Sah :</td>
-                    <td class="table-content-body__item" colspan="1">
-                        <div class="table-input">
-                            <button type="button"
-                                wire:click="$set('suaratidaksah', {{ (int) $this->suaratidaksah + 1 }} )">
-                                <iconify-icon icon="gala:add"></iconify-icon>
-                            </button>
-                            <input type="number" value="{{ $this->suaratidaksah }}" wire:model="suaratidaksah"
-                                class=" focus:ring-0" class="border-transparent  focus:ring-0">
-                            @error('suaratidaksah')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                            <button type="button"
-                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? (int) $this->suaratidaksah - 1 : 0 }} )">
-                                <iconify-icon icon="bi:dash-circle"></iconify-icon>
-                            </button>
-
-                        </div>
-                    </td>
-                </tr>
-                <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                    <td width="100%" class="table-foot-item text-[10px] lg:text-base ">Jumlah seluruh suara sah +
-                        suara
-                        tidak sah : </td>
-                    <td class="table-foot-item" value="{{ $this->totalsuarasahtidak }}"
-                        wire:model="totalsuarasahtidak" width="100%" colspan="100%" style="text-align: center">
-                        {{ $this->totalsuarasahtidak }}</td>
-
-                </tr>
             </tbody>
 
         </table>
@@ -254,6 +196,72 @@
                     <td class="table-foot-item">{{ $countall }}</td>
                 </tr>
             </tfoot>
+        </table>
+        <table class="table-content">
+
+            <tbody class="table-content-body">
+
+                <tr class="table-content-body-row">
+                    <td class="table-content-body__item  pl-3 border-b-2 border-t-2 border-collapse text-md"
+                        colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
+                    </td>
+                </tr>
+                <tr class="table-content-body-row">
+                    <td class="table-content-body__item pl-3 font-normal" colspan="5" width="80%"
+                        style="text-align: left">
+                        Jumlah Suara Sah :</td>
+                    <td class="table-content-body__item" colspan="1">
+                        <div class="table-input">
+                            <button type="button" wire:click="$set('suarasah', {{ (int) $this->suarasah + 1 }} )">
+                                <iconify-icon icon="gala:add"></iconify-icon>
+                            </button>
+                            <input type="number" value="{{ $this->suarasah }}" wire:model="suarasah"
+                                class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                            @error('suarasah')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                            <button type="button"
+                                wire:click="$set('suarasah', {{ $this->suarasah > 0 ? (int) $this->suarasah - 1 : 0 }} )">
+                                <iconify-icon icon="bi:dash-circle"></iconify-icon>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr class="table-content-body-row">
+                    <td class="table-content-body__item pl-3 font-normal " colspan="5" width="80%"
+                        style="text-align: left">
+                        Jumlah Suara Tidak Sah :</td>
+                    <td class="table-content-body__item" colspan="1">
+                        <div class="table-input">
+                            <button type="button"
+                                wire:click="$set('suaratidaksah', {{ (int) $this->suaratidaksah + 1 }} )">
+                                <iconify-icon icon="gala:add"></iconify-icon>
+                            </button>
+                            <input type="number" value="{{ $this->suaratidaksah }}" wire:model="suaratidaksah"
+                                class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                            @error('suaratidaksah')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                            <button type="button"
+                                wire:click="$set('suaratidaksah', {{ $this->suaratidaksah > 0 ? (int) $this->suaratidaksah - 1 : 0 }} )">
+                                <iconify-icon icon="bi:dash-circle"></iconify-icon>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
+                    <td width="100%" class="table-foot-item text-[10px] lg:text-base ">Jumlah seluruh suara sah +
+                        suara
+                        tidak sah : </td>
+                    <td class="table-foot-item" value="{{ $this->totalsuarasahtidak }}"
+                        wire:model="totalsuarasahtidak" width="100%" colspan="100%" style="text-align: center">
+                        {{ $this->totalsuarasahtidak }}</td>
+
+                </tr>
+            </tbody>
+
         </table>
         <div class="grid grid-cols-1 gap-3 pt-10">
             <header class="  text-center">
