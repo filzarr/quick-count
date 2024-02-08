@@ -320,7 +320,7 @@
                                 </svg>
                                 <div class="mb-5">
                                     <h3 class=" text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda Yakin
-                                        ingin mensubmit data?</h3>
+                                        ingin submit data?</h3>
                                     <span class="mb-5 text-xs font-normal text-gray-500 dark:text-gray-400">periksa
                                         kembali data anda sebelum melakukan submit</span>
                                 </div>
