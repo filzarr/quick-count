@@ -9,6 +9,7 @@ use App\Models\CountCaleg;
 use App\Models\CountPartai;
 use App\Models\DataPemilih;
 use App\Models\LampiranTps;
+use App\Models\DataInput;
 Use Alert;
 use Livewire\WithFileUploads;
 
@@ -38,6 +39,8 @@ class FormCaleg extends Component
     public $totalsuarasahtidak;
     public $pemilih = 0;
     public $show = false;
+    public $nama;
+    public $noHp;
     protected $rules = [
         'lampiran1' => 'required|max:5000000',
         'partai' => 'required|integer',
@@ -49,6 +52,8 @@ class FormCaleg extends Component
         'pemilih' => 'required|integer|min:0',
         'suarasah' => 'required|integer|min:0',
         'suaratidaksah' => 'required|integer|min:0',
+        'noHp' => 'required|min:10|max:13',
+        'nama' => 'required',
         // Tambahkan aturan validasi lainnya sesuai kebutuhan
     ];
     protected $messages = [
@@ -79,6 +84,8 @@ class FormCaleg extends Component
         'suaratidaksah.required' => 'Jumlah suara tidak sah harus diisi.',
         'suaratidaksah.integer' => 'Jumlah suara tidak sah harus berupa angka.',
         'suaratidaksah.min' => 'Jumlah suara tidak sah tidak boleh kurang dari :min.',
+        'nama.required' => 'Nama penginput harus diisi.',
+        'noHp.required' => 'Nomor HP penginput harus diisi.',
         // Tambahkan pesan kesalahan khusus untuk aturan validasi lainnya sesuai kebutuhan
     ];
     public function mount($tps){
@@ -122,6 +129,11 @@ class FormCaleg extends Component
     public function submit(){
         $this->validate(); 
         $this->show = true;
+        DataInput::create([
+            'tps_id' => $this->tps,
+            'nama' => $this->nama,
+            'noHp' => $this->noHp,
+        ]);
         DataPemilih::create([
             'tps_id' => $this->tps,
             'kategori' => 'dpt',

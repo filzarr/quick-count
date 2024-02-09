@@ -63,7 +63,7 @@
                                             Calon Legistlatif
                                         </th>
                                         @foreach ($partai->calegs[0]->lokasi as $lokasi)
-                                            <th class="px-6 pt-8 pb-3 text-xs lg:text-sm"
+                                            <th class="px-6 pt-8 pb-3 text-xs lg:text-sm" style="text-align: center;"
                                                 wire:click="openfile({{ $lokasi->tps_id }}, '{{ $lokasi->lokasi }}')">
                                                 {{ $lokasi->lokasi }}
                                             </th>
@@ -77,17 +77,17 @@
                                     @foreach ($partai->calegs as $caleg)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             <td scope="row"
-                                                class="px-6 py-4 font-normal nama-caleg text-gray-900 whitespace-nowrap dark:text-white">
+                                                class="px-6 py-4 font-normal text-xs lg:text-base nama-caleg text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $caleg->namacaleg }}</td>
                                             @foreach ($caleg->lokasi as $lokasi)
                                                 @if ($this->kat == 'desa')
                                                     <td scope="col" style="text-align: center;"
-                                                        class="suara-caleg-{{ $j }} px-6 py-3 suara-{{ $i }}">
+                                                        class="suara-caleg-{{ $j }} text-xs lg:text-base px-6 py-3 suara-{{ $i }}">
                                                         {{ $lokasi->suara }}
                                                     </td>
                                                 @else
-                                                    <td scope="col" style="text-align: start;"
-                                                        class="suara-caleg-{{ $j }} text-start px-6 py-3 suara-{{ $i }}">
+                                                    <td scope="col" style="text-align: center;"
+                                                        class="suara-caleg-{{ $j }}  text-xs lg:text-base text-start px-6 py-3 suara-{{ $i }}">
                                                         {{ $lokasi->suara }}
                                                     </td>
                                                 @endif
@@ -107,120 +107,171 @@
                 @endforeach
             </div>
             @if ($this->show)
-                <header class="rekapitulasi__header mt-5">
-                    <h3>{{ $this->tps }}</h3>
-                </header>
-                <table class="table-content mt-5">
+                @if (is_null($this->datainput))
+                    <header class="rekapitulasi__header mt-5">
+                        <h3>Data Tidak Ada</h3>
+                    </header>
+                @else
+                    <header class="rekapitulasi__header mt-5">
+                        <h3>{{ $this->tps }}</h3>
+                    </header>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-10  ">
+                        <header class="lg:col-span-2">
+                            <h3 class="header-content-form text-left">Data Penginput</h3>
+                        </header>
+                        <div>
+                            <label for="first_name"
+                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama:</label>
+                            <input type="text" id="first_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukkan Nama Anda" disabled value="{{ $this->datainput->nama }}">
 
-                    <tbody class="table-content-body">
+                        </div>
+                        <div class="">
+                            <label for="phone-input"
+                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nomor
+                                HP/WA:</label>
+                            <div class="relative">
+                                <div
+                                    class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
+                                        <path
+                                            d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="phone-input" value="{{ $this->datainput->noHp }}"
+                                    aria-describedby="helper-text-explanation"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="08**-****-****" disabled>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <table class="table-content mt-5">
+
+                        <tbody class="table-content-body">
 
 
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 border-t-2 border-collapse text-md" colspan="100%"
-                                style="text-align: left">A. Data Pemilih
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 font-normal  border-b-2" colspan="5" width="80%"
-                                style="text-align: left">Jumlah pemilih dalam Daftar Pemilih Tetap (DPT) :
-                            </td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number"value="{{ $this->pemilih->suara }}" class=" focus:ring-0"
-                                        class="border-transparent  focus:ring-0" disabled>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
-                                colspan="100%" style="text-align: left">B. Pengguna Hak Pilih
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
-                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tetap (DPT) :
-                            </td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number" class=" focus:ring-0"value="{{ $this->dpt->suara }}"
-                                        class="border-transparent  focus:ring-0" disabled>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
-                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan (DPTb)
-                                : </td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number" class=" focus:ring-0" disabled
-                                        value="{{ $this->dptb->suara }}" class="border-transparent  focus:ring-0">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
-                                style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Khusus (DPK) :
-                            </td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number"value="0" class=" focus:ring-0" disabled
-                                        value="{{ $this->dpk->suara }}" class="border-transparent  focus:ring-0">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                            <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah pengguna hak pilih
-                                (DPT + DPTb + DPK)</td>
-                            <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
-                                {{ $this->dpk->suara + $this->dptb->suara + $this->dpt->suara }}</td>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 border-t-2 border-collapse text-md"
+                                    colspan="100%" style="text-align: left">A. Data Pemilih
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 font-normal  border-b-2" colspan="5"
+                                    width="80%" style="text-align: left">Jumlah pemilih dalam Daftar Pemilih Tetap
+                                    (DPT)
+                                    :
+                                </td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number"value="{{ $this->pemilih->suara }}" class=" focus:ring-0"
+                                            class="border-transparent  focus:ring-0" disabled>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
+                                    colspan="100%" style="text-align: left">B. Pengguna Hak Pilih
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
+                                    style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tetap (DPT)
+                                    :
+                                </td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number" class=" focus:ring-0"value="{{ $this->dpt->suara }}"
+                                            class="border-transparent  focus:ring-0" disabled>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
+                                    style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Tambahan
+                                    (DPTb)
+                                    : </td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number" class=" focus:ring-0" disabled
+                                            value="{{ $this->dptb->suara }}"
+                                            class="border-transparent  focus:ring-0">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3  font-normal" colspan="5" width="80%"
+                                    style="text-align: left">Jumlah pengguna hak pilih dalam Daftar Pemilih Khusus
+                                    (DPK) :
+                                </td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number"value="0" class=" focus:ring-0" disabled
+                                            value="{{ $this->dpk->suara }}" class="border-transparent  focus:ring-0">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
+                                <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah pengguna hak
+                                    pilih
+                                    (DPT + DPTb + DPK)</td>
+                                <td class="table-foot-item" width="100%" colspan="100%"
+                                    style="text-align: center">
+                                    {{ $this->dpk->suara + $this->dptb->suara + $this->dpt->suara }}</td>
 
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
-                                colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 font-normal" colspan="5" width="80%"
-                                style="text-align: left">
-                                Jumlah Suara Sah :</td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number" disabled value="{{ $this->suarasah->suara }}"
-                                        class=" focus:ring-0" class="border-transparent  focus:ring-0">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row">
-                            <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
-                                style="text-align: left">
-                                Jumlah Suara Tidak Sah :</td>
-                            <td class="table-content-body__item" colspan="1">
-                                <div class="table-input">
-                                    <input type="number" disabled value="{{ $this->suaratidaksah->suara }}"
-                                        class=" focus:ring-0" class="border-transparent  focus:ring-0">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                            <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah seluruh suara sah
-                                + suara tidak sah : </td>
-                            <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
-                                {{ $this->suaratidaksah->suara + $this->suarasah->suara }}</td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 border-b-2 border-t-2 border-collapse text-md"
+                                    colspan="100%" style="text-align: left">Data Suara Sah dan Tidak Sah
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 font-normal" colspan="5" width="80%"
+                                    style="text-align: left">
+                                    Jumlah Suara Sah :</td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number" disabled value="{{ $this->suarasah->suara }}"
+                                            class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row">
+                                <td class="table-content-body__item pl-3 font-normal  " colspan="5" width="80%"
+                                    style="text-align: left">
+                                    Jumlah Suara Tidak Sah :</td>
+                                <td class="table-content-body__item" colspan="1">
+                                    <div class="table-input">
+                                        <input type="number" disabled value="{{ $this->suaratidaksah->suara }}"
+                                            class=" focus:ring-0" class="border-transparent  focus:ring-0">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
+                                <td width="100%" class="table-foot-item text-xs lg:text-base ">Jumlah seluruh suara
+                                    sah
+                                    + suara tidak sah : </td>
+                                <td class="table-foot-item" width="100%" colspan="100%"
+                                    style="text-align: center">
+                                    {{ $this->suaratidaksah->suara + $this->suarasah->suara }}</td>
 
-                        </tr>
-                    </tbody>
+                            </tr>
+                        </tbody>
 
-                </table>
-                <header class="rekapitulasi__header mt-5">
-                    <h3>{{ $this->tps }}</h3>
-                </header>
-                <div class="grid grid-cols-1 gap-10 mt-5">
-                    @foreach ($this->lampiran as $item)
-                        <a href="{{url('/storage/lampiran/'.$item->file)}}" target="_blank"><img src="{{url('/storage/lampiran/'.$item->file)}}" alt=""></a>
-                    @endforeach
-                </div>
+                    </table>
+                    <header class="rekapitulasi__header mt-5">
+                        <h3>{{ $this->tps }}</h3>
+                    </header>
+                    <div class="grid grid-cols-1 gap-10 mt-5">
+                        @foreach ($this->lampiran as $item)
+                            <a href="{{ url('/storage/lampiran/' . $item->file) }}" target="_blank"><img
+                                    src="{{ url('/storage/lampiran/' . $item->file) }}" alt=""></a>
+                        @endforeach
+                    </div>
+                @endif
             @else
             @endif
 

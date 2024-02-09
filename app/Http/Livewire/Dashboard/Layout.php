@@ -13,6 +13,7 @@ use App\Models\Tps;
 use App\Models\Kecamatan;
 use App\Models\LampiranTps;
 use App\Models\DataPemilih;
+use App\Models\DataInput;
 use DB;
 class Layout extends Component
 {
@@ -28,6 +29,7 @@ class Layout extends Component
     public $show = false;
     public $tps_id;
     public $idcategory;
+    public $datainput;
     protected $listeners = ['changefilters'];
     public $tps;
     public function changefilters($request){
@@ -44,6 +46,7 @@ class Layout extends Component
         $this->dpt = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dpt')->first();
         $this->dptb = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dptb')->first();
         $this->pemilih = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'pemilih')->first();
+        $this->datainput = DataInput::where('tps_id', $this->tps_id)->first();
         $this->tps = $tpsnama;
     }
     public function render()

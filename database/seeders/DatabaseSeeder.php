@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             TpsSeeder::class,
             PartaiSeeder::class,
             CalegSeeder::class,
+            UserSeeder::class,
         ]);
 
     }

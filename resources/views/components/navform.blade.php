@@ -1,4 +1,4 @@
-<div class="w-full  px-5 py-5  lg:px-32 lg:py-5 sticky top-0 bg-white   shadow">
+<div class="w-full  z-10  px-5 py-5  lg:px-32 lg:py-5 sticky top-0 bg-white   shadow">
     <div class="flex justify-between align-middle  items-center ">
         <div class=" text-sm lg:text-base font-semibold text-gray-900">Aplikasi SmartVote </div>
         <div class=" text-end">

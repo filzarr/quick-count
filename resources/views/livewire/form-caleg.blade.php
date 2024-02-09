@@ -1,5 +1,39 @@
 <div>
     <form wire:submit.prevent="submit" class="final-form-content">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-10  mt-10">
+            <header class="lg:col-span-2">
+                <h3 class="header-content-form text-left">Isi Data diri Anda Sebelum Memasukkan data</h3>
+            </header>
+            <div>
+                <label for="first_name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama:</label>
+                <input type="text" id="first_name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Masukkan Nama Anda" wire:model="nama">
+                @error('nama')
+                    <span class="text-red-500 text-xs">*{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="">
+                <label for="phone-input" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nomor
+                    HP/WA:</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
+                            <path
+                                d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
+                        </svg>
+                    </div>
+                    <input type="text" id="phone-input" wire:model="noHp" aria-describedby="helper-text-explanation"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="08**-****-****">
+
+                </div>
+                @error('noHp')
+                    <span class="text-red-500 text-xs">*{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
         <table class="table-content">
 
             <tbody class="table-content-body">
@@ -108,7 +142,8 @@
                     </td>
                 </tr>
                 <tr class="table-content-body-row border-b-2  border-t-2  border-black/10">
-                    <td width="100%" class="table-foot-item text-[10px] lg:text-base">Jumlah pengguna hak pilih (DPT +
+                    <td width="100%" class="table-foot-item text-[10px] lg:text-base">Jumlah pengguna hak pilih (DPT
+                        +
                         DPTb + DPK)</td>
                     <td class="table-foot-item" width="100%" colspan="100%" style="text-align: center">
                         {{ $this->totalpenggunahakpilih }}</td>
@@ -272,9 +307,9 @@
 
                 <input type="file" wire:model.lazy="lampiran1"
                     class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="small_size" ></input>
+                    id="small_size"></input>
                 @error('lampiran1')
-                    <span class=" text-sm  text-red-500">*{{ $message }}</span>
+                    <span class=" text-xs  text-red-500">*{{ $message }}</span>
                 @enderror
                 <p class="text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Lampiran 1 PNG, JPG or Webp
                     (MAX. 5Mb).</p>
@@ -285,16 +320,23 @@
                 <button wire:loading wire:target="lampiran1"
                     class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button">
-                    <svg aria-hidden="true" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                    <svg aria-hidden="true"
+                        class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="currentColor" />
+                        <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="currentFill" />
                     </svg>
                     <span class="sr-only">Loading...</span>
                 </button>
-                <button wire:loading.remove wire:target="lampiran1" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                <button wire:loading.remove wire:target="lampiran1" data-modal-target="popup-modal"
+                    data-modal-toggle="popup-modal"
                     class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button">
-                    
+
                     Submit
                 </button>
                 <div id="popup-modal" tabindex="-1"
@@ -325,11 +367,10 @@
                                         kembali data anda sebelum melakukan submit</span>
                                 </div>
                                 <button data-modal-hide="popup-modal" type="submit"
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2"
-                                   >
+                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
                                     <span wire:loading.remove>Ya, Saya Yakin!</span>
 
-                                        <!-- Tambahkan ikon atau pesan loading di sini -->
+                                    <!-- Tambahkan ikon atau pesan loading di sini -->
                                     </span>
                                 </button>
                                 <button data-modal-hide="popup-modal" type="button"
@@ -338,7 +379,7 @@
                         </div>
                     </div>
                 </div>
-                <div wire:loading class="w-full h-full fixed top-0 left-0 bg-white opacity-75 z-50">
+                <div wire:loading wire:target='submit' class="w-full h-full fixed top-0 left-0 bg-white opacity-75 z-50">
                     <div class="flex justify-center items-center mt-[50vh]">
                         <div class="fas fa-circle-notch fa-spin fa-5x text-violet-600">
                             <div class="text-center">
