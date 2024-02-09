@@ -209,7 +209,7 @@
                                 </td>
                                 <td class="table-content-body__item" colspan="1">
                                     <div class="table-input">
-                                        <input type="number"value="0" class=" focus:ring-0" disabled
+                                        <input type="number" class=" focus:ring-0" disabled
                                             value="{{ $this->dpk->suara }}" class="border-transparent  focus:ring-0">
                                     </div>
                                 </td>
