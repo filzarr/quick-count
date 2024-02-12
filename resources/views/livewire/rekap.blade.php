@@ -106,7 +106,7 @@
 
                                 </tbody>
                             </table>
-                            <div class="flex justify-end mt-10 gap-10">{{ $data->links('pagination::tailwind') }}</div>
+                            <div class="flex justify-end mt-10 gap-10">{!! $data->links('pagination::tailwind') !!}</div>
                         </div>
                     </section>
 

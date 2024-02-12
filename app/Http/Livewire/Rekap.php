@@ -22,7 +22,7 @@ class Rekap extends Component
         $this->kotaid = '';
         $this->kecamatanid = '';
         $this->desaid = '';
-        $this->resetPage('tpsPage');
+        $this->resetPage();
     }
     public function tes()
     {
@@ -39,19 +39,34 @@ class Rekap extends Component
             # code...
             $this->desa = Desa::where('kecamatan_id', $this->kecamatanid)->get();
         }
-        return view('livewire.rekap', [
-            'data' => LampiranTps::select('lampiran_tps.created_at', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')->leftJoin('tps', 'tps.id', '=', 'lampiran_tps.tps_id')
+        // Query database hanya ketika filter berubah
+        $lampiranTpsQuery = LampiranTps::select('lampiran_tps.created_at', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')
+            ->leftJoin('tps', 'tps.id', '=', 'lampiran_tps.tps_id')
             ->leftJoin('desas', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('kecamatans', 'kecamatans.id', '=', 'desas.kecamatan_id')
-            ->leftJoin('kotas', 'kotas.id', '=', 'kecamatans.kota_id')
-            ->where('tps.desa_id', 'like', '%'.$this->desaid.'%')
-            ->where('desas.kecamatan_id', 'like', '%'.$this->kecamatanid.'%')
-            ->where('kecamatans.kota_id', 'like', '%'.$this->kotaid.'%')
-            ->orderBy('tps.id')
+            ->leftJoin('kotas', 'kotas.id', '=', 'kecamatans.kota_id');
+    
+        // Filter berdasarkan kondisi
+        if ($this->desaid) {
+            $lampiranTpsQuery->where('tps.desa_id', $this->desaid );
+        }
+        if ($this->kecamatanid) {
+            $lampiranTpsQuery->where('desas.kecamatan_id', $this->kecamatanid );
+        }
+        if ($this->kotaid) {
+            $lampiranTpsQuery->where('kecamatans.kota_id', $this->kotaid );
+        }
+    
+        // Pagination
+        $data = $lampiranTpsQuery->orderBy('tps.id')
             ->orderBy('desas.id')
             ->orderBy('kecamatans.id')
             ->orderBy('kotas.id')
-            ->paginate(30,  ['*'], 'tpsPage'),
+            ->paginate(20,['*'], 'tpsPage')
+            ->setPath(route('rekap'));
+    
+        return view('livewire.rekap', [
+            'data' => $data,
         ]);
     }
 }

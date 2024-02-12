@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::get('/rekap-tps', [DashboardController::class, 'rekap'])->middleware('auth');
+Route::get('/rekap-tps', [DashboardController::class, 'rekap'])->middleware('auth')->name('rekap');
 Route::post('/login', [AuthController::class, 'loginattemp']);
 Route::get('/form', [FormController::class, 'kota']);
 Route::get('/form/{kota}', [FormController::class, 'kecamatan']);
