@@ -11,4 +11,7 @@ class DashboardController extends Controller
 
         return view('pages.dashboard.index');
     }
+    public function rekap(){
+        return view('pages.dashboard.rekap');
+    }
 }

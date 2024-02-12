@@ -24,5 +24,8 @@
             <option value="{{ $item->id }}">{{ $item->desa }}</option>
         @endforeach
     </select>
+    <div class=" flex justify-end  items-center">
+        <a href="/rekap-tps"><button class=" font-semibold text-gray-800 hover:underline hover:text-blue-500">Rekap TPS</button></a>
+    </div>
 </section>
 
