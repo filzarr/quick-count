@@ -63,19 +63,14 @@
                                             Calon Legistlatif
                                         </th>
                                         @foreach ($partai->calegs[0]->lokasi as $lokasi)
-                                            @if ($lokasi->tps_id)
+                                       
                                                 <th class="px-6 pt-8 pb-3 text-xs lg:text-sm"
                                                     style="text-align: center;"
                                                     wire:click="openfile({{ $lokasi->tps_id }}, '{{ $lokasi->lokasi }}')">
                                                     {{ $lokasi->lokasi }}
                                                 </th>
-                                            @else
-                                                <th class="px-6 pt-8 pb-3 text-xs lg:text-sm"
-                                                    style="text-align: center;"
-                                                   >
-                                                    {{ $lokasi->lokasi }}
-                                                </th>
-                                            @endif
+                                      
+                                        
                                         @endforeach
                                     </tr>
                                 </thead>
