@@ -4,7 +4,7 @@
             <div class="col-span-4 flex justify-end">
                 <button class=" underline text-blue-500" wire:click="resetSelect">reset</button>
             </div>
-            <select id="countries" wire:model="kotaid"  wire:change="tes"
+            <select id="countries" wire:model="kotaid" wire:change="tes"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="0" selected>Pilih Kota/Kabupaten</option>
                 @foreach ($this->kota as $item)
@@ -12,7 +12,7 @@
                 @endforeach
             </select>
 
-            <select id="kecamatan" wire:model="kecamatanid" {{ $kotaid < 1 ? 'disabled' : '' }}  wire:change="tes"
+            <select id="kecamatan" wire:model="kecamatanid" {{ $kotaid < 1 ? 'disabled' : '' }} wire:change="tes"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Pilih Kecamatan</option>
                 @if ($this->kecamatan)
@@ -22,7 +22,8 @@
                 @endif
 
             </select>
-            <select id="desa" wire:model="desaid" {{ $kecamatanid < 1 || $kotaid < 1 ? 'disabled' : '' }}  wire:change="tes"
+            <select id="desa" wire:model="desaid" {{ $kecamatanid < 1 || $kotaid < 1 ? 'disabled' : '' }}
+                wire:change="tes"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Pilih Desa/Kelurahan</option>
                 @if ($this->desa)
@@ -34,7 +35,8 @@
             </select>
             <div class=" flex justify-end  items-center">
                 <a href="/dashboard"><button
-                        class=" font-semibold text-gray-800 hover:underline hover:text-blue-500">Rekap Suara</button></a>
+                        class=" font-semibold text-gray-800 hover:underline hover:text-blue-500">Rekap
+                        Suara</button></a>
             </div>
         </section>
         <div class="rekapitulasi">
@@ -64,51 +66,60 @@
             </div>
             <div class="" wire:loading.remove>
 
-                    <section class="rekapitulasi__calon mt-5 lg:mt-20">
+                <section class="rekapitulasi__calon mt-5 lg:mt-20">
 
-                        <div class="relative table-count overflow-x-scroll ">
-                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead class="text-xs  text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">
+                    <div class="relative table-count overflow-x-scroll ">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs  text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th width="5%" class="p-1 text-center text-xs lg:text-sm">
+                                        No.
+                                    </th>
+
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Nomor TPS
+                                    </th>
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Desa
+                                    </th>
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Kecamatan
+                                    </th>
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Kota
+                                    </th>
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Waktu Input
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $pageNumber = ($data->currentPage() - 1) * $data->perPage();
+                                @endphp
+                                @foreach ($data as $item)
                                     <tr>
-                                        <th  width="5%" class="p-1 text-center text-xs lg:text-sm">
-                                            No.
-                                        </th>
-
-                                        <th class=" text-xs lg:text-sm" style="text-align: center;">
-                                            Nomor TPS
-                                        </th>
-                                        <th class=" text-xs lg:text-sm" style="text-align: center;">
-                                            Desa
-                                        </th>
-                                        <th class=" text-xs lg:text-sm" style="text-align: center;">
-                                            Kecamatan
-                                        </th>
-                                        <th class=" text-xs lg:text-sm" style="text-align: center;">
-                                            Kota
-                                        </th>
-                                        <th class=" text-xs lg:text-sm" style="text-align: center;">
-                                            Waktu Input
-                                        </th>
-
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $pageNumber + $loop->index + 1 }}</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $item->nomortps }}</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $item->desa }}</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $item->kecamatan }}</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $item->Kota }}</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            {{ $item->created_at }} WIB</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data as $item)
-                                        <tr>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$loop->iteration}}</td>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$item->nomortps}}</td>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$item->desa}}</td>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$item->kecamatan}}</td>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$item->Kota}}</td>
-                                            <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">{{$item->created_at}} WIB</td>
-                                        </tr>
-                                    @endforeach
+                                @endforeach
 
-                                </tbody>
-                            </table>
-                            <div class="flex justify-end mt-10 gap-10">{!! $data->links('pagination::tailwind') !!}</div>
-                        </div>
-                    </section>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end mt-10 gap-10">{!! $data->links('pagination::tailwind') !!}</div>
+                    </div>
+                </section>
 
             </div>
         </div>
