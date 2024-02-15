@@ -72,7 +72,7 @@ class Rekap extends Component
             ->orderBy('desas.id')
             ->orderBy('kecamatans.id')
             ->orderBy('kotas.id')
-            ->paginate(1,['*'], 'tpsPage')
+            ->paginate(20,['*'], 'tpsPage')
             ->appends([
                 'kotaid' => $this->kotaid,
                 'kecamatanid' => $this->kecamatanid,
