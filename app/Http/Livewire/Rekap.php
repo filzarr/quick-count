@@ -18,16 +18,26 @@ class Rekap extends Component
     public $kecamatanid = '';
     public $desa;
     public $desaid = '';
+    protected $queryString = ['kotaid','kecamatanid','desaid'];
     public function resetSelect(){
         $this->kotaid = '';
         $this->kecamatanid = '';
         $this->desaid = '';
-        $this->resetPage();
+        $this->resetPage('tpsPage');
     }
-    public function tes()
+    public function updatingkotaid()
     {
         $this->resetPage('tpsPage');
     }
+    public function updatingdesaid()
+    {
+        $this->resetPage('tpsPage');
+    }
+    public function updatingkecamatanid()
+    {
+        $this->resetPage('tpsPage');
+    }
+
     public function render()
     {
         $this->kota = Kota::get();
@@ -62,9 +72,14 @@ class Rekap extends Component
             ->orderBy('desas.id')
             ->orderBy('kecamatans.id')
             ->orderBy('kotas.id')
-            ->paginate(20,['*'], 'tpsPage')
+            ->paginate(1,['*'], 'tpsPage')
+            ->appends([
+                'kotaid' => $this->kotaid,
+                'kecamatanid' => $this->kecamatanid,
+                'desaid' => $this->desaid,
+            ])
             ->setPath(route('rekap'));
-    
+            $data->withPath('rekap-tps');
         return view('livewire.rekap', [
             'data' => $data,
         ]);

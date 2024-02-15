@@ -4,15 +4,31 @@
             <div class="col-span-4 flex justify-end">
                 <button class=" underline text-blue-500" wire:click="resetSelect">reset</button>
             </div>
-            <select id="countries" wire:model="kotaid" wire:change="tes"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="0" selected>Pilih Kota/Kabupaten</option>
-                @foreach ($this->kota as $item)
-                    <option value="{{ $item->id }}">{{ $item->Kota }}</option>
-                @endforeach
-            </select>
+            @if ($this->kotaid > 0)
+                <select id="countries" wire:model="kotaid"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+               
+                    @foreach ($this->kota as $item)
+                        @if ($item->id == $this->kotaid)
+                            <option value="{{ $item->id }}" selected>{{ $item->Kota }}</option>
+                        @else
+                            <option value="{{ $item->id }}">{{ $item->Kota }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            @else
+                <select id="countries" wire:model="kotaid"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="0" selected>Pilih Kota/Kabupaten</option>
+                    @foreach ($this->kota as $item)
+                        <option value="{{ $item->id }}">{{ $item->Kota }}</option>
+                    @endforeach
+                </select>
+            @endif
 
-            <select id="kecamatan" wire:model="kecamatanid" {{ $kotaid < 1 ? 'disabled' : '' }} wire:change="tes"
+
+            <select id="kecamatan" wire:model="kecamatanid"
+                {{ $this->kotaid < 1 ? 'disabled' : '' }}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Pilih Kecamatan</option>
                 @if ($this->kecamatan)
@@ -22,8 +38,8 @@
                 @endif
 
             </select>
-            <select id="desa" wire:model="desaid" {{ $kecamatanid < 1 || $kotaid < 1 ? 'disabled' : '' }}
-                wire:change="tes"
+            <select id="desa" wire:model="desaid"
+                {{ $this->kecamatanid < 1 || $this->kotaid < 1 ? 'disabled' : '' }}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Pilih Desa/Kelurahan</option>
                 @if ($this->desa)
