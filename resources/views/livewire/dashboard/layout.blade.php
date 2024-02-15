@@ -277,7 +277,7 @@
                     <div class="grid grid-cols-1 gap-10 mt-5">
                         @foreach ($this->lampiran as $item)
                             @if (substr($item->file, -3) === 'pdf')
-                                <iframe src="{{ url('/storage/lampiran/' . $item->file) }}" frameborder="0"></iframe>
+                                <iframe src="{{ url('/storage/lampiran/' . $item->file) }}" style="width: 100%;height:500px" frameborder="0"></iframe>
                             @else
                                 <a href="{{ url('/storage/lampiran/' . $item->file) }}" target="_blank"><img
                                         src="{{ url('/storage/lampiran/' . $item->file) }}" alt=""></a>
