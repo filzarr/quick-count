@@ -295,4 +295,8 @@
     .table-input input {
         border-bottom: 0;
     }
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
 </style>
