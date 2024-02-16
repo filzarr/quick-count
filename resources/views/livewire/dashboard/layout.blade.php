@@ -10,6 +10,9 @@
             <header class="rekapitulasi__header mt-5">
                 <h3>REKAPITULASI HASIL PEMILU LEGISLATIF DPR RI 2024</h3>
             </header>
+            <div class="flex justify-end">
+                <button wire:click="exportexcel" class="font-semibold text-gray-800 hover:underline hover:text-blue-500">Export Excel</button>
+            </div>
             <div wire:loading class="w-full h-full fixed top-0 left-0 bg-white opacity-75 z-50">
                 <div class="flex justify-center items-center mt-[50vh]">
                     <div class="fas fa-circle-notch fa-spin fa-5x text-violet-600">
@@ -38,7 +41,7 @@
                 $i = 0;
                 ?>
                 @foreach ($this->data as $partai)
-                    <section class="rekapitulasi__calon mt-5 lg:mt-20">
+                    <section class="rekapitulasi__calon mt-5 lg:mt-10">
                         <table class="  w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

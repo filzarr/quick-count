@@ -7,7 +7,7 @@
             @if ($this->kotaid > 0)
                 <select id="countries" wire:model="kotaid"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-               
+
                     @foreach ($this->kota as $item)
                         @if ($item->id == $this->kotaid)
                             <option value="{{ $item->id }}" selected>{{ $item->Kota }}</option>
@@ -27,8 +27,7 @@
             @endif
 
 
-            <select id="kecamatan" wire:model="kecamatanid"
-                {{ $this->kotaid < 1 ? 'disabled' : '' }}
+            <select id="kecamatan" wire:model="kecamatanid" {{ $this->kotaid < 1 ? 'disabled' : '' }}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Pilih Kecamatan</option>
                 @if ($this->kecamatan)

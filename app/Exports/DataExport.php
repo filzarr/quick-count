@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Dashboard;
+namespace App\Exports;
 
-use Livewire\Component;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 use App\Models\Kota;
 use App\Models\Partai;
 use App\Models\Caleg;
@@ -15,49 +18,23 @@ use App\Models\LampiranTps;
 use App\Models\DataPemilih;
 use App\Models\DataInput;
 use DB;
-use App\Exports\DataExport;
-use Excel;
-class Layout extends Component
+class DataExport implements FromView, ShouldAutoSize
 {
-    public $kat;
-    public $data;
-    public $lampiran;
-    public $suarasah;
-    public $suaratidaksah;
-    public $dpt;
-    public $pemilih;
-    public $dptb;
-    public $dpk;
-    public $show = false;
-    public $tps_id;
+    /**
+    * @return \Illuminate\Support\Collection
+    */
     public $idcategory;
-    public $datainput;
-    protected $listeners = ['changefilters'];
-    public $tps;
-    public function changefilters($request){
-        $this->idcategory = $request['idcategory'];
-        $this->kat = $request['category'];
+    public $kat;
+    public function __construct($idcategory, $kat){
+        $this->idcategory = $idcategory;
+        $this->kat = $kat;
     }
-    public function openfile($tps, $tpsnama){
-        $this->tps_id = $tps;
-        $this->show = true;
-        $this->lampiran = LampiranTps::where('tps_id', $this->tps_id)->get();
-        $this->suaratidaksah = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'suara-tidak-sah')->first();
-        $this->suarasah = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'suara-sah')->first();
-        $this->dpk = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dpk')->first();
-        $this->dpt = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dpt')->first();
-        $this->dptb = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'dptb')->first();
-        $this->pemilih = DataPemilih::where('tps_id', $this->tps_id)->where('kategori', 'pemilih')->first();
-        $this->datainput = DataInput::where('tps_id', $this->tps_id)->first();
-        $this->tps = $tpsnama;
-    }
-    public function exportexcel(){
-        return Excel::download(new DataExport($this->idcategory,$this->kat), 'Rekap-Data.xlsx');
-    }
-    public function render()
+    public function view(): View
     {
-        
-        $this->data = Partai::select('id', 'partai')
+        $namakota = [];
+        $namakecamatan = [];
+        $namadesa = [];
+        $data = Partai::select('id', 'partai')
         ->with([
             'calegs' => function ($query) {
                 $query->select('id', 'namacaleg', 'partai_id')
@@ -65,7 +42,19 @@ class Layout extends Component
             }
         ])
         ->get();
-        foreach ($this->data as $partai) {
+        if ($this->kat == 'kota') {
+            $namakota = Kota::where('id', $this->idcategory)->first();
+        }
+        elseif($this->kat == 'kecamatan'){
+            $namakecamatan = Kecamatan::where('id', $this->idcategory)->first();
+            $namakota = Kota::where('id', $namakecamatan->kota_id)->first();
+        }
+        elseif($this->kat == 'desa'){
+            $namadesa = Desa::where('id', $this->idcategory)->first();
+            $namakecamatan = Kecamatan::where('id', $namadesa->kecamatan_id)->first();
+            $namakota = Kota::where('id', $namakecamatan->kota_id)->first();
+        }
+        foreach ($data as $partai) {
             foreach ($partai->calegs as $caleg) {
                 if ($this->kat == 'kota') {
                     $caleg->lokasi = Kecamatan::
@@ -109,7 +98,7 @@ class Layout extends Component
             }
         }
       
-            foreach ($this->data as $partai) {
+            foreach ($data as $partai) {
                 if ($this->kat == 'kota') {
                     $a = CountPartai::select(DB::raw('COALESCE(SUM(count_partais.suara),0) as suarapartai'))
                     ->leftJoin('tps', 'count_partais.tps_id', '=', 'tps.id')
@@ -145,7 +134,7 @@ class Layout extends Component
                 }
 
             }
-            $this->dispatchBrowserEvent('contentChanged');
-        return view('livewire.dashboard.layout');
+           
+            return view('pages.excel', compact('data','namakota','namakecamatan','namadesa'));
     }
 }
