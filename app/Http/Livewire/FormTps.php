@@ -21,7 +21,11 @@ class FormTps extends Component
         $kota =$this->kota;
         $kecamatan = $this->kecamatan;
         $desa = $this->desa;
-        $data = Tps::where('desa_id',$this->desaid)->get();
+        $data = Tps::where('desa_id',$this->desaid)->whereNotIn(
+            'id', function($query){
+                $query->select('tps_id')->from('data_inputs');
+            }
+        )->get();
         return view('livewire.form-tps', compact('data','kecamatan','desa','kota'));
     }
 }
