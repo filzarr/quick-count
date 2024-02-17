@@ -11,7 +11,8 @@
                 <h3>REKAPITULASI HASIL PEMILU LEGISLATIF DPR RI 2024</h3>
             </header>
             <div class="flex justify-end">
-                <button wire:click="exportexcel" class="font-semibold text-gray-800 hover:underline hover:text-blue-500">Export Excel</button>
+                <button wire:click="exportexcel"
+                    class="font-semibold text-gray-800 hover:underline hover:text-blue-500">Export Excel</button>
             </div>
             <div wire:loading class="w-full h-full fixed top-0 left-0 bg-white opacity-75 z-50">
                 <div class="flex justify-center items-center mt-[50vh]">
@@ -280,10 +281,14 @@
                     <div class="grid grid-cols-1 gap-10 mt-5">
                         @foreach ($this->lampiran as $item)
                             @if (substr($item->file, -3) === 'pdf')
-                                <iframe src="{{ url('/storage/lampiran/' . $item->file) }}" style="width: 100%;height:500px" frameborder="0"></iframe>
+                                <iframe src="{{ url('/storage/lampiran/' . $item->file) }}"
+                                    style="width: 100%;height:500px" frameborder="0"></iframe>
                             @else
-                                <a href="{{ url('/storage/lampiran/' . $item->file) }}" target="_blank"><img
-                                        src="{{ url('/storage/lampiran/' . $item->file) }}" alt=""></a>
+                                @if ($item->file)
+                                    <a href="{{ url('/storage/lampiran/' . $item->file) }}" target="_blank"><img
+                                            src="{{ url('/storage/lampiran/' . $item->file) }}" alt=""></a>
+                                @else
+                                @endif
                             @endif
                         @endforeach
                     </div>
@@ -298,6 +303,7 @@
     .table-input input {
         border-bottom: 0;
     }
+
     .container {
         width: 100%;
         max-width: 100%;

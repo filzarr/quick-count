@@ -8,6 +8,7 @@ use App\Models\Kecamatan;
 use App\Models\LampiranTps;
 use App\Models\Tps;
 use App\Models\Desa;
+use App\Models\DataInput;
 use Livewire\WithPagination;
 use Excel;
 use App\Exports\RekapExport;
@@ -54,8 +55,8 @@ class Rekap extends Component
             $this->desa = Desa::where('kecamatan_id', $this->kecamatanid)->get();
         }
         // Query database hanya ketika filter berubah
-        $lampiranTpsQuery = LampiranTps::select('lampiran_tps.created_at', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')
-            ->leftJoin('tps', 'tps.id', '=', 'lampiran_tps.tps_id')
+        $lampiranTpsQuery = DataInput::select('data_inputs.created_at', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')
+            ->leftJoin('tps', 'tps.id', '=', 'data_inputs.tps_id')
             ->leftJoin('desas', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('kecamatans', 'kecamatans.id', '=', 'desas.kecamatan_id')
             ->leftJoin('kotas', 'kotas.id', '=', 'kecamatans.kota_id');

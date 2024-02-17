@@ -42,7 +42,7 @@ class FormCaleg extends Component
     public $nama;
     public $noHp;
     protected $rules = [
-        'lampiran1' => 'required|max:5000000',
+        'lampiran1' => 'max:5000000',
         'partai' => 'required|integer',
         'countpartai' => 'required|integer|min:0',
         'calegs.*' => 'required|integer|min:0',
@@ -57,7 +57,6 @@ class FormCaleg extends Component
         // Tambahkan aturan validasi lainnya sesuai kebutuhan
     ];
     protected $messages = [
-        'lampiran1.required' => 'Lampiran 1 harus diisi.',
         'partai.required' => 'Partai harus dipilih.',
         'partai.integer' => 'Partai harus berupa angka.',
         'countpartai.required' => 'Jumlah suara partai harus diisi.',
