@@ -1,48 +1,37 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Exports;
 
-use Livewire\Component;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 use App\Models\Kota;
+use App\Models\Partai;
+use App\Models\Caleg;
+use App\Models\CountCaleg;
+use App\Models\CountPartai;
+use App\Models\Desa;
+use App\Models\Tps;
 use App\Models\Kecamatan;
 use App\Models\LampiranTps;
-use App\Models\Tps;
-use App\Models\Desa;
-use Livewire\WithPagination;
-use Excel;
-use App\Exports\RekapExport;
-class Rekap extends Component
+use App\Models\DataPemilih;
+use App\Models\DataInput;
+use DB;
+class RekapExport implements FromView, ShouldAutoSize
 {
-    use WithPagination;
-    public $kota;
-    public $kotaid = '';
-    public $kecamatan;
-    public $kecamatanid = '';
-    public $desa;
-    public $desaid = '';
-    protected $queryString = ['kotaid','kecamatanid','desaid'];
-    public function resetSelect(){
-        $this->kotaid = '';
-        $this->kecamatanid = '';
-        $this->desaid = '';
-        $this->resetPage('tpsPage');
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public $desaid;
+    public $kotaid;
+    public $kecamatanid;
+    public function __construct($kotaid, $kecamatanid,$desaid){
+        $this->kotaid = $kotaid;
+        $this->kecamatanid = $kecamatanid;
+        $this->desaid = $desaid;
     }
-    public function updatingkotaid()
-    {
-        $this->resetPage('tpsPage');
-    }
-    public function updatingdesaid()
-    {
-        $this->resetPage('tpsPage');
-    }
-    public function updatingkecamatanid()
-    {
-        $this->resetPage('tpsPage');
-    }
-    public function exportexcel(){
-        return Excel::download(new RekapExport($this->kotaid,$this->kecamatanid,$this->desaid), 'Rekap-Input.xlsx');
-    }
-    public function render()
+    public function view() : View
     {
         $this->kota = Kota::get();
         if ($this->kotaid > 0) {
@@ -76,16 +65,8 @@ class Rekap extends Component
             ->orderBy('desas.id')
             ->orderBy('kecamatans.id')
             ->orderBy('kotas.id')
-            ->paginate(20,['*'], 'tpsPage')
-            ->appends([
-                'kotaid' => $this->kotaid,
-                'kecamatanid' => $this->kecamatanid,
-                'desaid' => $this->desaid,
-            ])
-            ->setPath(route('rekap'));
-            $data->withPath('rekap-tps');
-        return view('livewire.rekap', [
-            'data' => $data,
-        ]);
+            ->get();
+        return view('pages.excel-rekap', compact('data'));
+
     }
 }
