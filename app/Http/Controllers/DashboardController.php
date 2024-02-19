@@ -14,4 +14,8 @@ class DashboardController extends Controller
     public function rekap(){
         return view('pages.dashboard.rekap');
     }
+    public function edittps($tpsid){
+        $tpsid = $tpsid;
+        return view('pages.dashboard.edit', compact('tpsid'));
+    }
 }

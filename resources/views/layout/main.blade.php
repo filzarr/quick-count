@@ -19,5 +19,6 @@
     </main>
     @stack('js')
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.0.0/dist/iconify-icon.min.js"></script>
 </body>
 </html>

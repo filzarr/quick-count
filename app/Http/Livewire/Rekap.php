@@ -55,7 +55,7 @@ class Rekap extends Component
             $this->desa = Desa::where('kecamatan_id', $this->kecamatanid)->get();
         }
         // Query database hanya ketika filter berubah
-        $lampiranTpsQuery = DataInput::select('data_inputs.created_at', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')
+        $lampiranTpsQuery = DataInput::select('data_inputs.created_at', 'data_inputs.tps_id', 'tps.nomortps','desas.desa','kecamatans.kecamatan','kotas.Kota')
             ->leftJoin('tps', 'tps.id', '=', 'data_inputs.tps_id')
             ->leftJoin('desas', 'desas.id', '=', 'tps.desa_id')
             ->leftJoin('kecamatans', 'kecamatans.id', '=', 'desas.kecamatan_id')

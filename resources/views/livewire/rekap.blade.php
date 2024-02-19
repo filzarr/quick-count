@@ -109,6 +109,9 @@
                                     <th class=" text-xs lg:text-sm" style="text-align: center;">
                                         Waktu Input
                                     </th>
+                                    <th class=" text-xs lg:text-sm" style="text-align: center;">
+                                        Action
+                                    </th>
 
                                 </tr>
                             </thead>
@@ -130,6 +133,10 @@
                                             {{ $item->Kota }}</td>
                                         <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
                                             {{ $item->created_at }} WIB</td>
+                                        <td class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                            <a href="edit/{{$item->tps_id}}">
+                                                <iconify-icon icon="mdi:edit-box" width="24" height="24"  style="color: #ffea00"></iconify-icon> </a></td>
+
                                     </tr>
                                 @endforeach
 
