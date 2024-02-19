@@ -15,7 +15,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/rekap-tps', [DashboardController::class, 'rekap'])->middleware('auth')->name('rekap');
 Route::get('/edit/{tpsid}', [DashboardController::class, 'edittps'])->middleware('auth')->name('edit');
