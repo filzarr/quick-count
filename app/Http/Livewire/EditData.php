@@ -48,7 +48,13 @@ class EditData extends Component
             $this->calegsid[$i] =  $this->caleg[$i]->id;
         }
         $this->lampiranfile = LampiranTps::where('tps_id', $this->tpsid)->first();
-        $this->lampiranfile = $this->lampiranfile->file;
+        if ($this->lampiranfile != null) {
+            $this->lampiranfile = $this->lampiranfile->file;
+        }
+        else{
+            $this->lampiranfile = '';
+        }
+
         // dd($this->lampiran);
         $this->nama = $this->datadiri->nama;
         $this->noHp = $this->datadiri->noHp;
