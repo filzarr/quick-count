@@ -87,6 +87,19 @@
                                     <?php
                                     $j = 0;
                                     ?>
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td scope="row"
+                                            class="px-6 py-4 font-normal text-xs lg:text-base nama-caleg text-gray-900 whitespace-nowrap dark:text-white">
+                                            Suara Partai</td>
+                                        @foreach ($this->data[0]->suaralokasi as $lokasi)
+                                         
+                                                <td scope="col" style="text-align: center;"
+                                                    class=" text-xs lg:text-base text-start px-6 py-3 ">
+                                                    {{ $lokasi->suara }}
+                                                </td>
+                                            
+                                        @endforeach
+                                    </tr>
                                     @foreach ($partai->calegs as $caleg)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             <td scope="row"
@@ -180,8 +193,8 @@
                                 </td>
                                 <td class="table-content-body__item" colspan="1">
                                     <div class="table-input">
-                                        <input type="number"value="{{ $this->pemilih->suara }}" class=" focus:ring-0"
-                                            class="border-transparent  focus:ring-0" disabled>
+                                        <input type="number"value="{{ $this->pemilih->suara }}"
+                                            class=" focus:ring-0" class="border-transparent  focus:ring-0" disabled>
                                     </div>
                                 </td>
                             </tr>

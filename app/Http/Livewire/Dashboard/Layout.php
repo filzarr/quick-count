@@ -66,6 +66,47 @@ class Layout extends Component
         ])
         ->get();
         foreach ($this->data as $partai) {
+            if ($this->kat == 'kota') {
+                $partai->suaralokasi = Kecamatan::
+                select(DB::raw('kecamatans.kecamatan as lokasi, COALESCE(SUM(count_partais.suara),0) as suara'))
+                ->leftJoin('desas', 'kecamatans.id','=','desas.kecamatan_id')
+                ->leftJoin('tps', 'desas.id','=','tps.desa_id')
+                ->leftJoin('count_partais', function ($join) use ($partai) {
+                    $join->on('tps.id', '=', 'count_partais.tps_id')
+                    ->where('count_partais.partai_id', $partai->id);
+                })->where('kecamatans.kota_id', $this->idcategory)->groupBy('kecamatans.id')->get();
+            }
+            elseif($this->kat == 'kecamatan'){
+                $partai->suaralokasi = Desa::
+                select(DB::raw('desas.desa as lokasi, COALESCE(SUM(count_partais.suara),0) as suara'))
+                ->leftJoin('tps', 'desas.id','=','tps.desa_id')
+                ->leftJoin('count_partais', function ($join) use ($partai) {
+                    $join->on('tps.id', '=', 'count_partais.tps_id')
+                    ->where('count_partais.partai_id', $partai->id);
+                })->where('desas.kecamatan_id', $this->idcategory)->groupBy('desas.id')->get();
+            }
+            elseif($this->kat == 'desa'){
+                $partai->suaralokasi = Tps::
+                select(DB::raw('tps.nomortps as lokasi, tps.id as tps_id, COALESCE(SUM(count_partais.suara),0) as suara'))
+                ->leftJoin('count_partais', function ($join) use ($partai) {
+                    $join->on('tps.id', '=', 'count_partais.tps_id')
+                    ->where('count_partais.partai_id', $partai->id);
+                })->where('tps.desa_id', $this->idcategory)->groupBy('tps.id')->get();
+            }
+            else{
+
+                $partai->suaralokasi = Kota::
+                select(DB::raw('kotas.Kota as lokasi, COALESCE(SUM(count_partais.suara),0) as suara'))
+                ->leftJoin('kecamatans', 'kotas.id','=','kecamatans.kota_id')
+                ->leftJoin('desas', 'kecamatans.id','=','desas.kecamatan_id')
+                ->leftJoin('tps', 'desas.id','=','tps.desa_id')
+                ->leftJoin('count_partais', function ($join) use ($partai) {
+                    $join->on('tps.id', '=', 'count_partais.tps_id')
+                        ->where('count_partais.partai_id', $partai->id);
+                })->groupBy('kotas.id')->get();
+            }
+        }
+        foreach ($this->data as $partai) {
             foreach ($partai->calegs as $caleg) {
                 if ($this->kat == 'kota') {
                     $caleg->lokasi = Kecamatan::
@@ -145,6 +186,7 @@ class Layout extends Component
                 }
 
             }
+            // dd($this->data);
             $this->dispatchBrowserEvent('contentChanged');
         return view('livewire.dashboard.layout');
     }
